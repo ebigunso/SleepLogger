@@ -183,3 +183,119 @@ Prevention:
   - Run a targeted search for `C:/Users`, `/c/Users`, `%USERPROFILE%`, `%APPDATA%`, `AppData`, and similar local-path markers before pushing documentation-heavy changes.
 
 Evidence:
+
+## 2026-03-16 — Durable product docs used "assistant" ambiguously for LLM-specific behavior  [tags: docs, communication, terminology, llm]
+
+Context:
+- Plan: Follow-up revision to durable personalization roadmap docs
+- Task/Wave: Pre-plan refresh / document architecture correction
+- Roles involved: Orchestrator, User
+
+Deviation:
+- I wrote durable product docs that used "assistant" ambiguously enough to blur whether the docs were talking about LLM-powered integrations or more mechanical forms of automation.
+
+Root cause:
+- I used broad shorthand for a capability class that needed to be distinguished from adjacent concepts such as deterministic automation and repo-internal agent workflow.
+- I did not freeze a terminology policy before drafting the durable docs.
+
+Fix applied:
+- Paused the doc revision flow and re-scoped the work around explicit capability-class terminology.
+- Added a plan requirement to standardize terminology for model-driven and automation-adjacent concepts before revising the docs.
+
+Prevention:
+- Primary promotion target: global-skill
+- Candidate prevention rule (optional):
+  - audience: orchestrator
+  - proposed rule: Before drafting durable product docs about behavior classes or system roles, define the capability-class terminology explicitly and avoid ambiguous umbrella terms unless they are defined near the top.
+- Optional guardrail:
+  - For durable product docs, distinguish among the nearby capability classes in scope before drafting content, and make the intended boundary explicit.
+
+Evidence:
+- User correction on 2026-03-16 requiring explicit LLM terminology because "assistant" could be interpreted as mechanical rather than LLM-driven.
+
+## 2026-03-16 — Durable product docs must separate philosophy from milestone and boundary detail  [tags: docs, communication, roadmap, abstraction]
+
+Context:
+- Plan: Follow-up revision to durable personalization roadmap docs
+- Task/Wave: Pre-plan refresh / document architecture correction
+- Roles involved: Orchestrator, User
+
+Deviation:
+- I mixed product aspirations, design philosophy, milestone sequencing, and implementation-adjacent boundary detail too closely in the durable roadmap set.
+
+Root cause:
+- I optimized for a complete immediate write-up instead of assigning clear roles to philosophy, roadmap, and boundary documents first.
+- I allowed large abstraction jumps inside the same documents without a strong document-role architecture.
+
+Fix applied:
+- Re-scoped the work around a document-architecture refresh rather than a wording-only revision.
+- Added a plan requirement to define separate durable document roles before rewriting the roadmap set.
+
+Prevention:
+- Primary promotion target: global-skill
+- Candidate prevention rule (optional):
+  - audience: orchestrator
+  - proposed rule: Before drafting durable product documentation, define which document owns philosophy, which owns milestone sequencing, and which owns capability boundaries so mixed abstraction levels do not collapse into one memo.
+- Optional guardrail:
+  - If aspirations, milestones, and boundary rules all need to be expressed, decide the document split before drafting the prose.
+
+Evidence:
+- User correction on 2026-03-16 requiring the roadmap to convey aspirations and milestones before details, and suggesting a split if abstraction levels are too far apart.
+
+## 2026-03-16 — Durable product docs need explicit freshness semantics for time-relative language  [tags: docs, communication, durability, freshness]
+
+Context:
+- Plan: Follow-up revision to durable personalization roadmap docs
+- Task/Wave: Pre-plan refresh / document architecture correction
+- Roles involved: Orchestrator, User
+
+Deviation:
+- I used time-relative language like "today" and "current" in durable product docs without a clear freshness contract or update context.
+
+Root cause:
+- I treated time-relative language as acceptable shorthand instead of requiring metadata or dated snapshot framing.
+- I did not define how readers should distinguish durable principles from dated state observations.
+
+Fix applied:
+- Added a plan requirement to define metadata fields and freshness semantics before revising the docs.
+- Shifted the revision approach toward explicit last-updated context and dated snapshot language where needed.
+
+Prevention:
+- Primary promotion target: global-skill
+- Candidate prevention rule (optional):
+  - audience: orchestrator
+  - proposed rule: Durable product docs that use time-relative language must carry explicit freshness metadata or dated snapshot framing, and unqualified uses of terms like "today" or "current" should be removed or anchored.
+- Optional guardrail:
+  - Before finalizing durable docs, run a terminology sweep for time-relative words and confirm each one is either durable by role or explicitly date-anchored.
+
+Evidence:
+- User correction on 2026-03-16 requiring a durable way to distinguish outdated documents from up-to-date ones and to anchor uses of "today" in context.
+
+## 2026-03-16 — Keep lesson incidents concrete and generalize the prevention rule  [tags: lessons, communication, scope, durability]
+
+Context:
+- Plan: Follow-up revision to durable personalization roadmap docs
+- Task/Wave: Lesson refinement after document-architecture correction
+- Roles involved: Orchestrator, User
+
+Deviation:
+- I generalized the entire lesson instead of keeping the triggering incident concrete and concentrating the generalization work in the prevention section.
+
+Root cause:
+- I treated the lesson title and incident record as the main place to maximize reuse, rather than treating the prevention rule as the main place to generalize future guidance.
+- I did not separate "what happened" from "what rule should change going forward" clearly enough.
+
+Fix applied:
+- Reverted the incident lesson back to the concrete LLM-terminology problem that triggered it.
+- Updated the meta-lesson so it makes the lesson-writing standard explicit for future captures.
+
+Prevention:
+- Primary promotion target: global-skill
+- Candidate prevention rule (optional):
+  - audience: orchestrator
+  - proposed rule: When capturing a lesson, keep the incident record concrete and specific to what happened, then generalize the prevention rule to the highest-value confirmed scope that still directly addresses the issue; if a broader prevention scope is plausible but unconfirmed, ask instead of assuming.
+- Optional guardrail:
+  - Before finalizing a lesson, ask three questions: "Is the incident record concrete enough to preserve what happened?" "Can the prevention rule be generalized further without losing the original issue?" and "Would broadening the prevention rule further require assumptions about user intent or adjacent domains?"
+
+Evidence:
+- User correction on 2026-03-16 stating that lessons should be generalized as much as possible for future steering value, but not prematurely expanded beyond confirmed intent.
