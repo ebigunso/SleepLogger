@@ -48,7 +48,7 @@ An LLM-powered surface may also rely on durable companion docs that explain ship
 
 - [feature-reference.md](./feature-reference.md) for shipped product behavior and constraints.
 - [personalization-metrics-shortlist.md](./personalization-metrics-shortlist.md) for the evidence-backed metric shortlist and gating thresholds.
-- [personalization-agent-action-map.md](./personalization-agent-action-map.md) for proposal guardrails, confidence thresholds, and rollback policy.
+- [personalization-proposal-policy.md](./personalization-proposal-policy.md) for proposal guardrails, confidence thresholds, and rollback policy.
 - [personalization-roadmap.md](./personalization-roadmap.md) for phased direction without redefining shipped product truth.
 - [personalization-philosophy.md](./personalization-philosophy.md) for durable personalization beliefs, non-goals, and trust boundaries.
 
@@ -135,7 +135,7 @@ Read this contract alongside the following durable references:
 
 - [feature-reference.md](./feature-reference.md) for shipped features, authenticated reads, and user-driven mutations.
 - [personalization-metrics-shortlist.md](./personalization-metrics-shortlist.md) for evidence-backed personalization metrics and gating thresholds.
-- [personalization-agent-action-map.md](./personalization-agent-action-map.md) for proposal guardrails, confidence thresholds, and rollback conditions.
+- [personalization-proposal-policy.md](./personalization-proposal-policy.md) for proposal guardrails, confidence thresholds, and rollback conditions.
 - [personalization-roadmap.md](./personalization-roadmap.md) for the companion phased roadmap covering sequenced direction without redefining shipped product truth.
 - [personalization-philosophy.md](./personalization-philosophy.md) for the durable product beliefs and non-goals that constrain any LLM expansion.
 

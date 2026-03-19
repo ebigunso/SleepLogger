@@ -1,7 +1,7 @@
-# Personalization agent action map
+# Personalization proposal policy
 
 - status: draft
-- last_updated: 2026-03-18
+- last_updated: 2026-03-20
 - doc_role: guarded deterministic proposal policy for personalization actions
 - canonical_for: trigger logic, guardrails, confidence thresholds, rollback expectations, and proposal templates tied to personalization metrics
 - not_canonical_for: shipped feature inventory, roadmap sequencing, durable philosophy, or blanket approval for LLM-powered actions
@@ -9,7 +9,7 @@
 This is a policy companion to [personalization-metrics-shortlist.md](./personalization-metrics-shortlist.md).
 It maps each high-priority metric to concrete deterministic proposal candidates, including trigger thresholds and guardrails.
 
-Despite the file name, this document does not grant a generic agent or LLM permission to act. It defines when SleepTracker's deterministic product logic may surface or rank proposals, and it should be read alongside [feature-reference.md](./feature-reference.md) for shipped behavior, [personalization-philosophy.md](./personalization-philosophy.md) for durable product intent, [personalization-roadmap.md](./personalization-roadmap.md) for phased direction, and [llm-integration-readiness-contract.md](./llm-integration-readiness-contract.md) for the separate LLM integration boundary.
+This document does not grant generic automation or LLM permission to act. It defines when SleepTracker's deterministic product logic may surface or rank proposals, and it should be read alongside [feature-reference.md](./feature-reference.md) for shipped behavior, [personalization-philosophy.md](./personalization-philosophy.md) for durable product intent, [personalization-roadmap.md](./personalization-roadmap.md) for phased direction, and [llm-integration-readiness-contract.md](./llm-integration-readiness-contract.md) for the separate LLM integration boundary.
 
 ## How to use this page
 
@@ -30,13 +30,13 @@ Backend endpoints used by this map:
 
 ## Metric-to-action matrix
 
-| Metric | Primary analysis question | Agent action candidates | Trigger to act | Guardrail before applying |
+| Metric | Primary analysis question | Proposal candidates | Trigger to act | Guardrail before applying |
 |---|---|---|---|---|
 | Personal duration baseline (p10/p50/p90, IQR) | Is current sleep duration outside personal norm? | 1) Replace static unusual-duration warning with personalized range. 2) Add contextual warning text based on personal tails. | >= 60 sessions in baseline window and out-of-range incidence >= 5% in recent window | Do not apply if baseline window includes major schedule disruption period (travel/shift changes) |
-| Timing baseline by day type (weekday/weekend medians) | Are start/end times predictably different by day type? | 1) Prefill form defaults using day-type median bed/wake time. 2) Offer one-click “Use your usual weekday/weekend times.” | >= 8 weekday and >= 4 weekend sessions in window, with stable medians across 2 windows | Do not auto-switch defaults if recent 14-day pattern diverges strongly from baseline |
+| Timing baseline by day type (weekday/weekend medians) | Are start/end times predictably different by day type? | 1) Prefill form defaults using day-type median bed/wake time. 2) Offer one-click "Use your usual weekday/weekend times." | >= 8 weekday and >= 4 weekend sessions in window, with stable medians across 2 windows | Do not auto-switch defaults if recent 14-day pattern diverges strongly from baseline |
 | Social jetlag indicator (weekend-mid minus weekday-mid) | Is schedule phase shifting on weekends? | 1) Show schedule-shift insight card. 2) Suggest consistency-oriented trend view by default. | Absolute midpoint delta >= 30 min for 2 consecutive windows | Suppress if weekend sample is too small (< 4 sessions) |
 | Schedule variability score (bed/wake dispersion) | Is irregular timing the main instability source? | 1) Prioritize regularity insight over duration-only insight. 2) Suggest adding quick rounding controls or consistent-time shortcuts in future UX backlog. | Variability >= 60 min and persists across 2 windows | Defer if data gaps are high (missing days > 30% in window) |
-| Quality-aligned factor ranking | Which factors most align with higher quality nights? | 1) Rank top 2-3 actionable factors in dashboard insight text. 2) Shift default trend explanation toward quality-linked factors. | >= 40 sessions with quality and >= 3 distinct quality values; factor effect is stable across adjacent windows | Use directional language only (“associated with”), never causal language |
+| Quality-aligned factor ranking | Which factors most align with higher quality nights? | 1) Rank top 2-3 actionable factors in dashboard insight text. 2) Shift default trend explanation toward quality-linked factors. | >= 40 sessions with quality and >= 3 distinct quality values; factor effect is stable across adjacent windows | Use directional language only ("associated with"), never causal language |
 | Friction cost metrics (form time/errors/retries/immediate edits/partial follow-up failures) | Which workflow pain points waste the most time? | 1) Maintain auto-ranked UX backlog by estimated minutes saved/week. 2) Promote top item to implementation proposal when persistent. | >= 30 captured submit flows and at least one friction pattern persists for 2 windows | Require explicit evidence summary before proposing implementation changes |
 
 ## Trends metric purpose matrix (UI-compatible)
@@ -45,10 +45,10 @@ Purpose-first mapping for the existing Trends page metric toggle.
 
 | Trends metric key | Primary user question | Action intent (what user should do next) | Interpretation cue style |
 |---|---|---|---|
-| `duration` | “Am I getting enough sleep time recently?” | Shift bedtime/waketime plan to recover or protect total sleep window. | Direction + magnitude (minutes/h:mm delta vs prior period) |
-| `quality` | “Is perceived sleep quality moving in the right direction?” | Repeat routines linked to better nights; review low-score clusters. | Direction on 1..5 scale with stability emphasis |
-| `bedtime` | “Is my sleep onset timing drifting?” | Tighten bedtime consistency around intended anchor. | Earlier/later shift + variability cue |
-| `waketime` | “Is wake timing stable?” | Protect consistent wake anchor and reduce swings. | Earlier/later shift + variability cue |
+| `duration` | "Am I getting enough sleep time recently?" | Shift bedtime/waketime plan to recover or protect total sleep window. | Direction + magnitude (minutes/h:mm delta vs prior period) |
+| `quality` | "Is perceived sleep quality moving in the right direction?" | Repeat routines linked to better nights; review low-score clusters. | Direction on 1..5 scale with stability emphasis |
+| `bedtime` | "Is my sleep onset timing drifting?" | Tighten bedtime consistency around intended anchor. | Earlier/later shift + variability cue |
+| `waketime` | "Is wake timing stable?" | Protect consistent wake anchor and reduce swings. | Earlier/later shift + variability cue |
 
 ### Period comparison and interpretation policy for Trends-linked recommendations
 

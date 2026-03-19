@@ -24,7 +24,7 @@ This page is intentionally not a roadmap and not a record of shipped behavior. I
 - Use [feature-reference.md](./feature-reference.md) for implemented behavior and first-party product truth.
 - Use [llm-integration-readiness-contract.md](./llm-integration-readiness-contract.md) for explicit boundaries and prerequisites around LLM-powered integrations.
 - Use [personalization-metrics-shortlist.md](./personalization-metrics-shortlist.md) for the evidence-backed metric families that are strongest enough to prioritize.
-- Use [personalization-agent-action-map.md](./personalization-agent-action-map.md) for guarded proposal logic, triggers, and rollback expectations.
+- Use [personalization-proposal-policy.md](./personalization-proposal-policy.md) for guarded proposal logic, triggers, and rollback expectations.
 
 If this document and a companion document appear to disagree, defer to the companion doc for its own domain: shipped truth belongs in the feature reference, sequencing belongs in the roadmap, and LLM integration boundaries belong in the readiness contract.
 
@@ -109,6 +109,6 @@ This document is the philosophy layer in the personalization doc set.
 - [llm-integration-readiness-contract.md](./llm-integration-readiness-contract.md) defines the boundary for LLM-powered integrations and the prerequisites that must exist before any drafted or write-capable behavior is considered safe.
 - [feature-reference.md](./feature-reference.md) remains the canonical source for implemented product behavior, including first-party flows and shipped personalization capabilities.
 - [personalization-metrics-shortlist.md](./personalization-metrics-shortlist.md) identifies which signal families are strong enough to deserve attention and which ones should remain deferred.
-- [personalization-agent-action-map.md](./personalization-agent-action-map.md) shows how evidence-backed metrics can map to guarded deterministic proposals without implying blanket approval for LLM action.
+- [personalization-proposal-policy.md](./personalization-proposal-policy.md) shows how evidence-backed metrics can map to guarded deterministic proposals without implying blanket approval for LLM action.
 
 Together, these docs should keep philosophy, shipped truth, proposal logic, and staged LLM boundary questions separate enough that each can evolve without distorting the others.

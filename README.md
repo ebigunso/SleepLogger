@@ -159,7 +159,7 @@ Guardrail/confidence policy for personalization actions:
 - Auto-promote only when confidence is `medium` or `high`.
 - Roll back or suppress a proposal when persistence no longer holds for two windows or confidence drops below `medium`.
 
-See `docs/personalization-agent-action-map.md` for the metric-level trigger thresholds and guardrails.
+See `docs/personalization-proposal-policy.md` for the metric-level trigger thresholds and guardrails.
 
 ## Sleep sessions, wake dates, and timezones
 

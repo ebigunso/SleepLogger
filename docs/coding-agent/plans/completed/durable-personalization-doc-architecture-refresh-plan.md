@@ -35,7 +35,7 @@
   - docs/llm-integration-readiness-contract.md
   - docs/feature-reference.md
   - docs/personalization-metrics-shortlist.md
-  - docs/personalization-agent-action-map.md
+  - docs/personalization-proposal-policy.md
 - depends_on: []
 - acceptance:
   - Enumerate ambiguous uses of assistant terminology, mixed-role sections, and time-relative durability risks in the current docs.
@@ -55,7 +55,7 @@
   - docs/llm-integration-readiness-contract.md
   - docs/personalization-philosophy.md
   - docs/personalization-metrics-shortlist.md
-  - docs/personalization-agent-action-map.md
+  - docs/personalization-proposal-policy.md
   - docs/feature-reference.md
 - depends_on:
   - Task_1
@@ -143,7 +143,7 @@
 - type: docs
 - owns:
   - docs/personalization-metrics-shortlist.md
-  - docs/personalization-agent-action-map.md
+  - docs/personalization-proposal-policy.md
   - docs/feature-reference.md
 - depends_on:
   - Task_2
@@ -153,7 +153,7 @@
 - acceptance:
   - Apply only the bounded adjacent-doc touches selected by the treatment matrix.
   - Keep `docs/personalization-metrics-shortlist.md` clearly separated between dated snapshot basis and durable shortlist guidance.
-  - Tighten `docs/personalization-agent-action-map.md` so its role is guarded proposal policy, not implied LLM capability approval.
+  - Tighten `docs/personalization-proposal-policy.md` so its role is guarded proposal policy, not implied LLM capability approval.
   - Limit `docs/feature-reference.md` changes to targeted cross-links or brief companion notes, preserving it as canonical shipped truth.
 - validation:
   - required: true
@@ -177,9 +177,9 @@
 ## Progress Log
 
 - 2026-03-16: Drafted plan after a user correction identified ambiguous assistant terminology, weak philosophy-versus-detail separation, and missing freshness semantics in the durable product docs.
-- 2026-03-16: Expanded the draft scope after an adjacent-doc audit identified bounded follow-on work in `docs/personalization-metrics-shortlist.md`, `docs/personalization-agent-action-map.md`, and cross-link-only touches in `docs/feature-reference.md`.
+- 2026-03-16: Expanded the draft scope after an adjacent-doc audit identified bounded follow-on work in `docs/personalization-metrics-shortlist.md`, `docs/personalization-proposal-policy.md`, and cross-link-only touches in `docs/feature-reference.md`.
 - 2026-03-18: Worker wave created `docs/personalization-philosophy.md`, refactored `docs/personalization-roadmap.md`, and reframed the boundary document into an explicit LLM integration contract, later canonicalized at `docs/llm-integration-readiness-contract.md`.
-- 2026-03-18: Worker follow-on wave applied bounded adjacent-doc polish to `docs/personalization-metrics-shortlist.md`, `docs/personalization-agent-action-map.md`, and `docs/feature-reference.md`.
+- 2026-03-18: Worker follow-on wave applied bounded adjacent-doc polish to `docs/personalization-metrics-shortlist.md`, `docs/personalization-proposal-policy.md`, and `docs/feature-reference.md`.
 - 2026-03-18: Reviewer approved the six-document set with no remaining required fixes.
 
 ## Decision Log

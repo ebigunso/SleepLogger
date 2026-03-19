@@ -213,6 +213,36 @@ Prevention:
 Evidence:
 - User correction on 2026-03-16 requiring explicit LLM terminology because "assistant" could be interpreted as mechanical rather than LLM-driven.
 
+## 2026-03-20 — Fix misleading durable doc names instead of apologizing for them  [tags: docs, naming, communication, durability]
+
+Context:
+- Plan: Follow-up cleanup of durable personalization docs
+- Task/Wave: Post-architecture polish / naming correction
+- Roles involved: Orchestrator, User
+
+Deviation:
+- I left a durable policy document under a misleading filename and compensated with explanatory prose about why the name should not be taken literally.
+- That kept the underlying naming mismatch in place instead of remedying it.
+
+Root cause:
+- I optimized for minimal disruption and link preservation instead of treating the misleading filename itself as the defect.
+- I accepted disclaimer text as sufficient even though the file name continued to advertise the wrong conceptual role.
+
+Fix applied:
+- Renamed the document to match its actual role as proposal policy.
+- Updated live and historical references to the canonical path and removed the defensive filename disclaimer.
+
+Prevention:
+- Primary promotion target: global-skill
+- Candidate prevention rule (optional):
+  - audience: orchestrator
+  - proposed rule: When a durable doc needs a sentence explaining why its filename or title should not be taken literally, treat that as a signal to fix the name or structure instead of preserving the mismatch with disclaimer prose.
+- Optional guardrail:
+  - For durable docs, compare title, filename, metadata role, and opening paragraph before finalizing; if they disagree, resolve the naming mismatch rather than documenting around it.
+
+Evidence:
+- User correction on 2026-03-20: "You shouldn't just dance around potential issues like this, but rather work to remedy them."
+
 ## 2026-03-16 — Durable product docs must separate philosophy from milestone and boundary detail  [tags: docs, communication, roadmap, abstraction]
 
 Context:

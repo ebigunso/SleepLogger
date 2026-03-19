@@ -436,7 +436,7 @@ struct PersonalizationCalc {
 
 Uses wake-date semantics through `v_daily_sleep` (daily aggregated view), compares the current
 rolling window with the immediately previous window of equal length, and evaluates triggers and
-guardrails from `docs/personalization-agent-action-map.md`.
+guardrails from `docs/personalization-proposal-policy.md`.
 
 Errors:
 - Returns an API error for invalid dates or invalid `window_days` values.

@@ -1,7 +1,7 @@
-# Personalization Action Map Implementation Plan
+# Personalization Proposal Policy Implementation Plan
 
 ## Goal
-Implement the action items in `docs/personalization-agent-action-map.md` as production-ready backend + frontend behavior with explicit guardrails, confidence gating, and phased rollout safety.
+Implement the action items in `docs/personalization-proposal-policy.md` as production-ready backend + frontend behavior with explicit guardrails, confidence gating, and phased rollout safety.
 
 ## Definition of Done
 - Personalization metrics and action recommendations are computed from rolling windows and exposed through authenticated API endpoints.
@@ -16,13 +16,13 @@ Implement the action items in `docs/personalization-agent-action-map.md` as prod
 
 **Non-goals**
 - Cohort analytics or multi-user segmentation.
-- Heavy instrumentation beyond friction telemetry defined in the action map.
+- Heavy instrumentation beyond friction telemetry defined in the proposal policy.
 - Automatic action application when confidence is low or guardrails fail.
 
 ## Context (workspace)
 - Backend: `sleep-api/src/trends.rs`, `sleep-api/src/handlers.rs`, `sleep-api/src/repository.rs`, `sleep-api/src/config.rs`, `sleep-api/src/app.rs`.
 - Frontend: `sleep-ui/src/routes/sleep/new/+page.svelte`, `sleep-ui/src/lib/components/SleepForm.svelte`, `sleep-ui/src/routes/trends/+page.svelte`, `sleep-ui/src/lib/api.ts`.
-- Contract/docs: `openapi.yaml`, `README.md`, `docs/personalization-agent-action-map.md`, `docs/feature-reference.md`.
+- Contract/docs: `openapi.yaml`, `README.md`, `docs/personalization-proposal-policy.md`, `docs/feature-reference.md`.
 - DB migrations: add new file under `migrations/` (`0005_*`), no edits to existing migrations.
 
 ## Assumptions
@@ -47,7 +47,7 @@ Implement the action items in `docs/personalization-agent-action-map.md` as prod
 - **depends_on:** []
 - **acceptance:**
   - Add authenticated read endpoint returning rolling-window metrics for duration baseline, day-type timing baseline, social jetlag, schedule variability, and quality-factor ranking eligibility.
-  - Evaluate triggers/guardrails from the action map and include action recommendations with confidence and suppression reasons.
+  - Evaluate triggers/guardrails from the proposal policy and include action recommendations with confidence and suppression reasons.
   - Use existing wake-date/daily aggregation semantics (no duplicate date logic).
 - **validation:**
   - required: true | owner: worker | kind: command | detail: `cargo test -p sleep-api --test trends_bars`
@@ -156,12 +156,12 @@ Implement the action items in `docs/personalization-agent-action-map.md` as prod
 - **owns:**
   - `sleep-api/src/config.rs`
   - `README.md`
-  - `docs/personalization-agent-action-map.md`
+  - `docs/personalization-proposal-policy.md`
   - `docs/feature-reference.md`
 - **depends_on:** [Task_7]
 - **acceptance:**
   - Add feature flags for personalization read, UI action application, and telemetry ingest.
-  - Document phased rollout and rollback conditions aligned with action-map proposal policy.
+  - Document phased rollout and rollback conditions aligned with proposal-policy guardrails.
   - Confirm default behavior is unchanged when all flags are off.
 - **validation:**
   - required: true | owner: worker | kind: review | detail: documentation consistency pass across endpoint names/flags/guardrails

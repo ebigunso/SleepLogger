@@ -23,7 +23,7 @@ For durable product beliefs, aspirations, and non-goals beyond milestone interpr
 - Treat dated evidence as planning input, not floating current truth.
 - Use [feature-reference.md](./feature-reference.md) for shipped behavior.
 - Use [personalization-metrics-shortlist.md](./personalization-metrics-shortlist.md) for the current metric shortlist, thresholds, and dated planning snapshot basis.
-- Use [personalization-agent-action-map.md](./personalization-agent-action-map.md) for trigger logic, guardrails, confidence thresholds, and rollback policy.
+- Use [personalization-proposal-policy.md](./personalization-proposal-policy.md) for trigger logic, guardrails, confidence thresholds, and rollback policy.
 - Use [llm-integration-readiness-contract.md](./llm-integration-readiness-contract.md) for the governing boundary on later-stage LLM-powered product integrations and any progression toward drafts or writes.
 
 In this roadmap, "LLM-powered" means product surfaces or integrations that use an LLM to explain, structure, draft, or mediate personalization guidance. It does not imply shipped autonomous behavior, write approval, or external tool access. Deterministic automation and first-party product flows remain separate categories from LLM-powered behavior.
@@ -32,7 +32,7 @@ In this roadmap, "LLM-powered" means product surfaces or integrations that use a
 
 Shipped personalization behavior is anchored to [feature-reference.md](./feature-reference.md), including the implemented rolling-window metrics, recommendation outputs, friction telemetry ingestion endpoint, and friction backlog endpoint.
 
-Metric and action logic that informs milestone order is anchored to [personalization-metrics-shortlist.md](./personalization-metrics-shortlist.md) and [personalization-agent-action-map.md](./personalization-agent-action-map.md). This roadmap can summarize why those sources matter, but it does not replace them.
+Metric and action logic that informs milestone order is anchored to [personalization-metrics-shortlist.md](./personalization-metrics-shortlist.md) and [personalization-proposal-policy.md](./personalization-proposal-policy.md). This roadmap can summarize why those sources matter, but it does not replace them.
 
 The most explicit dated planning evidence in the durable doc set is the 2026-02-17 backend snapshot captured in [personalization-metrics-shortlist.md](./personalization-metrics-shortlist.md). As of that dated snapshot:
 
@@ -99,7 +99,7 @@ Milestone intent:
 
 - improve guidance in shipped dashboard, trends, and sleep-entry experiences
 - favor read-time insights, recommended defaults, and contextual warnings over autonomous action
-- keep wording directional and evidence-based, consistent with the current action-map guardrails
+- keep wording directional and evidence-based, consistent with the current proposal-policy guardrails
 
 Why this milestone belongs in the foundational sequence:
 
@@ -213,6 +213,6 @@ Milestones can move at different speeds, but the sequence should respect these g
 
 - Shipped capabilities and constraints: [feature-reference.md](./feature-reference.md)
 - Current metric priorities, thresholds, and dated snapshot basis: [personalization-metrics-shortlist.md](./personalization-metrics-shortlist.md)
-- Current action logic, guardrails, and rollback policy: [personalization-agent-action-map.md](./personalization-agent-action-map.md)
+- Current action logic, guardrails, and rollback policy: [personalization-proposal-policy.md](./personalization-proposal-policy.md)
 - Current LLM integration boundary and staged write-readiness gates: [llm-integration-readiness-contract.md](./llm-integration-readiness-contract.md)
 - Durable personalization beliefs and north-star framing: [personalization-philosophy.md](./personalization-philosophy.md)

@@ -28,7 +28,7 @@ Introduce an explainable, privacy-safe “possible hidden needs” capability th
 - Frontend API client/types: `sleep-ui/src/lib/api.ts`
 - Personalization/trends backend: `sleep-api/src/trends.rs`, `sleep-api/src/repository.rs`
 - Friction/personalization models: `sleep-api/src/models/friction.rs`, `migrations/0005_personalization_friction.sql`
-- Docs and action maps: `docs/personalization-agent-action-map.md`, `docs/personalization-metrics-shortlist.md`
+- Docs and action maps: `docs/personalization-proposal-policy.md`, `docs/personalization-metrics-shortlist.md`
 
 ## Tasks
 
@@ -36,7 +36,7 @@ Introduce an explainable, privacy-safe “possible hidden needs” capability th
 - **title:** Define hidden-needs taxonomy and inference guardrails
 - **type:** design
 - **owns:**
-  - `docs/personalization-agent-action-map.md`
+  - `docs/personalization-proposal-policy.md`
   - `docs/personalization-metrics-shortlist.md`
 - **depends_on:** []
 - **acceptance:**
@@ -132,7 +132,7 @@ Introduce an explainable, privacy-safe “possible hidden needs” capability th
 - **owns:**
   - `sleep-api/src/trends.rs`
   - `sleep-api/src/repository.rs`
-  - `docs/personalization-agent-action-map.md`
+  - `docs/personalization-proposal-policy.md`
 - **depends_on:** [Task_3]
 - **acceptance:**
   - Incorporate assistant-intent signal hints as optional inputs to hypothesis ranking.
