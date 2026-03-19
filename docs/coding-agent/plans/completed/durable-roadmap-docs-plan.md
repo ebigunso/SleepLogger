@@ -29,7 +29,7 @@
 - type: design
 - owns:
   - docs/personalization-roadmap.md
-  - docs/assistant-readiness-contract.md
+  - docs/llm-integration-readiness-contract.md
 - depends_on: []
 - acceptance:
   - Confirm the durable home is top-level `docs/`, not `docs/coding-agent/plans/`.
@@ -64,7 +64,7 @@
 ### Task_3
 - type: docs
 - owns:
-  - docs/assistant-readiness-contract.md
+  - docs/llm-integration-readiness-contract.md
 - depends_on:
   - Task_1
 - acceptance:
@@ -85,7 +85,7 @@
 - type: docs
 - owns:
   - docs/personalization-roadmap.md
-  - docs/assistant-readiness-contract.md
+  - docs/llm-integration-readiness-contract.md
 - depends_on:
   - Task_2
   - Task_3
@@ -107,7 +107,7 @@
 ## Progress Log
 
 - 2026-03-13: Drafted plan after repo design-doc review and Researcher recommendation to split the durable output into roadmap and assistant-readiness companion docs under top-level docs/.
-- 2026-03-13: Worker parallel wave created `docs/personalization-roadmap.md` and `docs/assistant-readiness-contract.md` within the approved split.
+- 2026-03-13: Worker parallel wave created `docs/personalization-roadmap.md` and the LLM boundary companion doc, later canonicalized at `docs/llm-integration-readiness-contract.md`.
 - 2026-03-13: Reviewer found two wording issues: drift-prone exact planning counts in the roadmap and an overstated read-boundary phrase in the assistant contract.
 - 2026-03-13: Applied targeted wording fixes, re-ran review, and received approval with no remaining material findings.
 

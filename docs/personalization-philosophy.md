@@ -22,7 +22,7 @@ This page is intentionally not a roadmap and not a record of shipped behavior. I
 - Use this page when deciding whether a personalization idea fits the product's long-term direction.
 - Use [personalization-roadmap.md](./personalization-roadmap.md) for sequencing, dependency gates, and phased direction.
 - Use [feature-reference.md](./feature-reference.md) for implemented behavior and first-party product truth.
-- Use [assistant-readiness-contract.md](./assistant-readiness-contract.md) for explicit boundaries and prerequisites around LLM-powered integrations.
+- Use [llm-integration-readiness-contract.md](./llm-integration-readiness-contract.md) for explicit boundaries and prerequisites around LLM-powered integrations.
 - Use [personalization-metrics-shortlist.md](./personalization-metrics-shortlist.md) for the evidence-backed metric families that are strongest enough to prioritize.
 - Use [personalization-agent-action-map.md](./personalization-agent-action-map.md) for guarded proposal logic, triggers, and rollback expectations.
 
@@ -106,7 +106,7 @@ If LLM-powered integrations become worthwhile, they should operate as constraine
 This document is the philosophy layer in the personalization doc set.
 
 - [personalization-roadmap.md](./personalization-roadmap.md) translates these beliefs into phased direction, dependency gates, and expansion sequencing.
-- [assistant-readiness-contract.md](./assistant-readiness-contract.md) defines the boundary for LLM-powered integrations and the prerequisites that must exist before any drafted or write-capable behavior is considered safe.
+- [llm-integration-readiness-contract.md](./llm-integration-readiness-contract.md) defines the boundary for LLM-powered integrations and the prerequisites that must exist before any drafted or write-capable behavior is considered safe.
 - [feature-reference.md](./feature-reference.md) remains the canonical source for implemented product behavior, including first-party flows and shipped personalization capabilities.
 - [personalization-metrics-shortlist.md](./personalization-metrics-shortlist.md) identifies which signal families are strong enough to deserve attention and which ones should remain deferred.
 - [personalization-agent-action-map.md](./personalization-agent-action-map.md) shows how evidence-backed metrics can map to guarded deterministic proposals without implying blanket approval for LLM action.

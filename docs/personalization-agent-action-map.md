@@ -9,14 +9,14 @@
 This is a policy companion to [personalization-metrics-shortlist.md](./personalization-metrics-shortlist.md).
 It maps each high-priority metric to concrete deterministic proposal candidates, including trigger thresholds and guardrails.
 
-Despite the file name, this document does not grant a generic agent or LLM permission to act. It defines when SleepTracker's deterministic product logic may surface or rank proposals, and it should be read alongside [feature-reference.md](./feature-reference.md) for shipped behavior, [personalization-philosophy.md](./personalization-philosophy.md) for durable product intent, [personalization-roadmap.md](./personalization-roadmap.md) for phased direction, and [assistant-readiness-contract.md](./assistant-readiness-contract.md) for the separate LLM integration boundary.
+Despite the file name, this document does not grant a generic agent or LLM permission to act. It defines when SleepTracker's deterministic product logic may surface or rank proposals, and it should be read alongside [feature-reference.md](./feature-reference.md) for shipped behavior, [personalization-philosophy.md](./personalization-philosophy.md) for durable product intent, [personalization-roadmap.md](./personalization-roadmap.md) for phased direction, and [llm-integration-readiness-contract.md](./llm-integration-readiness-contract.md) for the separate LLM integration boundary.
 
 ## How to use this page
 
 - Treat each row as a guarded proposal rule, not as automatic permission to mutate user data.
 - Run rules on a rolling window (for example: 28 days), then compare with the prior window.
 - Surface or rank a proposal only when trigger + confidence + guardrails are all satisfied.
-- Keep shipped read and write capabilities anchored to [feature-reference.md](./feature-reference.md); keep any future LLM-mediated behavior constrained by [assistant-readiness-contract.md](./assistant-readiness-contract.md).
+- Keep shipped read and write capabilities anchored to [feature-reference.md](./feature-reference.md); keep any future LLM-mediated behavior constrained by [llm-integration-readiness-contract.md](./llm-integration-readiness-contract.md).
 
 ## Backend endpoint mapping
 
@@ -66,7 +66,7 @@ Purpose-first mapping for the existing Trends page metric toggle.
 
 ## Backlog proposal policy (for autonomous suggestions)
 
-These rules govern proposal generation inside SleepTracker's deterministic product logic. They do not authorize LLM-generated writes, hidden side effects, or broader assistant behavior beyond the boundary described in [assistant-readiness-contract.md](./assistant-readiness-contract.md).
+These rules govern proposal generation inside SleepTracker's deterministic product logic. They do not authorize LLM-generated writes, hidden side effects, or broader assistant behavior beyond the boundary described in [llm-integration-readiness-contract.md](./llm-integration-readiness-contract.md).
 
 When generating a feature/change proposal, include:
 

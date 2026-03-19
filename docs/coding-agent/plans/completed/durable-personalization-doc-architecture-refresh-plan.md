@@ -32,7 +32,7 @@
 - type: research
 - owns:
   - docs/personalization-roadmap.md
-  - docs/assistant-readiness-contract.md
+  - docs/llm-integration-readiness-contract.md
   - docs/feature-reference.md
   - docs/personalization-metrics-shortlist.md
   - docs/personalization-agent-action-map.md
@@ -52,7 +52,7 @@
 - type: design
 - owns:
   - docs/personalization-roadmap.md
-  - docs/assistant-readiness-contract.md
+  - docs/llm-integration-readiness-contract.md
   - docs/personalization-philosophy.md
   - docs/personalization-metrics-shortlist.md
   - docs/personalization-agent-action-map.md
@@ -106,7 +106,7 @@
 ### Task_5
 - type: docs
 - owns:
-  - docs/assistant-readiness-contract.md
+  - docs/llm-integration-readiness-contract.md
 - depends_on:
   - Task_2
 - acceptance:
@@ -124,7 +124,7 @@
 - owns:
   - docs/personalization-philosophy.md
   - docs/personalization-roadmap.md
-  - docs/assistant-readiness-contract.md
+  - docs/llm-integration-readiness-contract.md
 - depends_on:
   - Task_3
   - Task_4
@@ -178,7 +178,7 @@
 
 - 2026-03-16: Drafted plan after a user correction identified ambiguous assistant terminology, weak philosophy-versus-detail separation, and missing freshness semantics in the durable product docs.
 - 2026-03-16: Expanded the draft scope after an adjacent-doc audit identified bounded follow-on work in `docs/personalization-metrics-shortlist.md`, `docs/personalization-agent-action-map.md`, and cross-link-only touches in `docs/feature-reference.md`.
-- 2026-03-18: Worker wave created `docs/personalization-philosophy.md`, refactored `docs/personalization-roadmap.md`, and reframed `docs/assistant-readiness-contract.md` into an explicit LLM integration boundary contract while preserving the existing filename.
+- 2026-03-18: Worker wave created `docs/personalization-philosophy.md`, refactored `docs/personalization-roadmap.md`, and reframed the boundary document into an explicit LLM integration contract, later canonicalized at `docs/llm-integration-readiness-contract.md`.
 - 2026-03-18: Worker follow-on wave applied bounded adjacent-doc polish to `docs/personalization-metrics-shortlist.md`, `docs/personalization-agent-action-map.md`, and `docs/feature-reference.md`.
 - 2026-03-18: Reviewer approved the six-document set with no remaining required fixes.
 
@@ -187,4 +187,4 @@
 - 2026-03-16: Treat document-role architecture as a prerequisite to rewriting content so philosophy, roadmap sequencing, and LLM integration boundaries can evolve independently.
 - 2026-03-16: Treat explicit LLM terminology and freshness metadata as durable defaults for future product-doc work rather than one-off fixes to these files.
 - 2026-03-16: Keep adjacent-doc polish intentionally narrow; leave `docs/api_examples.md`, `README.md`, and other non-overlapping docs alone unless link fallout requires a minimal fix.
-- 2026-03-18: Keep `docs/assistant-readiness-contract.md` as the filename for minimal disruption, but make the title and in-document terminology explicitly about LLM integration so the retained path does not control meaning.
+- 2026-03-18: Prefer a canonical filename that matches the LLM-specific document role; preserve the old path only as a historical compatibility stub when needed for older references.

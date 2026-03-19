@@ -217,7 +217,7 @@ This spec defines purpose-first interpretation rules for existing Trends chart m
 
 **Companion doc boundary**
 - This section is the canonical shipped-truth reference for implemented personalization endpoints and behavior.
-- Use [personalization-metrics-shortlist.md](./personalization-metrics-shortlist.md) for durable metric prioritization, [personalization-agent-action-map.md](./personalization-agent-action-map.md) for deterministic proposal policy, [personalization-roadmap.md](./personalization-roadmap.md) for future sequencing, [personalization-philosophy.md](./personalization-philosophy.md) for durable product beliefs, and [assistant-readiness-contract.md](./assistant-readiness-contract.md) for future LLM integration boundaries.
+- Use [personalization-metrics-shortlist.md](./personalization-metrics-shortlist.md) for durable metric prioritization, [personalization-agent-action-map.md](./personalization-agent-action-map.md) for deterministic proposal policy, [personalization-roadmap.md](./personalization-roadmap.md) for future sequencing, [personalization-philosophy.md](./personalization-philosophy.md) for durable product beliefs, and [llm-integration-readiness-contract.md](./llm-integration-readiness-contract.md) for future LLM integration boundaries.
 
 **Source evidence**
 - `sleep-api/src/app.rs` (personalization route wiring)

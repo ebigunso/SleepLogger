@@ -12,7 +12,7 @@ This document preserves a focused, implement-first shortlist of personalization 
 
 It uses one dated backend snapshot as planning evidence, but the shortlist guidance below is intended to remain durable until newer evidence justifies changing the priorities or thresholds.
 
-Use [feature-reference.md](./feature-reference.md) for shipped product truth, [personalization-roadmap.md](./personalization-roadmap.md) for sequencing, [personalization-philosophy.md](./personalization-philosophy.md) for durable product beliefs, [personalization-agent-action-map.md](./personalization-agent-action-map.md) for guarded deterministic proposal logic, and [assistant-readiness-contract.md](./assistant-readiness-contract.md) for LLM integration boundaries.
+Use [feature-reference.md](./feature-reference.md) for shipped product truth, [personalization-roadmap.md](./personalization-roadmap.md) for sequencing, [personalization-philosophy.md](./personalization-philosophy.md) for durable product beliefs, [personalization-agent-action-map.md](./personalization-agent-action-map.md) for guarded deterministic proposal logic, and [llm-integration-readiness-contract.md](./llm-integration-readiness-contract.md) for LLM integration boundaries.
 
 ## Dated snapshot basis
 
