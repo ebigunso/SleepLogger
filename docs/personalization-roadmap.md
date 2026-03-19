@@ -3,7 +3,7 @@
 ## Metadata
 
 - status: draft
-- last_updated: 2026-03-18
+- last_updated: 2026-03-20
 - doc_role: phased personalization roadmap and dependency reference
 - canonical_for: planned personalization milestones, sequencing, dependency gates, and explicit non-commitments
 - not_canonical_for: shipped product behavior, durable product philosophy, metric definitions, action policy, or implementation status claims
@@ -15,20 +15,27 @@ This document is the roadmap for how SleepTracker personalization should mature 
 
 Use it to understand milestone order, readiness gates, and what is intentionally deferred. Do not use it as proof that a capability is already shipped, approved, or scheduled for a specific release.
 
-For durable product beliefs, aspirations, and non-goals beyond milestone interpretation, use [personalization-philosophy.md](./personalization-philosophy.md) when consulting the personalization document set.
+## Main sequence
 
-## How to read this roadmap
+The roadmap order is:
+
+1. Improve shipped personalization first.
+2. Strengthen evidence and lightweight context so those improvements are trustworthy.
+3. Consider gated expansion only after the foundational product loop and proof gates hold.
+
+That means roadmap priority stays with better baseline interpretation, better friction evidence, better lightweight context, and better guidance in existing surfaces before any dedicated LLM-powered surface or mediated workflow expands.
+
+## How to use this roadmap
 
 - Treat every milestone here as directional and gated.
-- Treat dated evidence as planning input, not floating current truth.
 - Use [feature-reference.md](./feature-reference.md) for shipped behavior.
-- Use [personalization-metrics-shortlist.md](./personalization-metrics-shortlist.md) for the current metric shortlist, thresholds, and dated planning snapshot basis.
-- Use [personalization-proposal-policy.md](./personalization-proposal-policy.md) for trigger logic, guardrails, confidence thresholds, and rollback policy.
-- Use [llm-integration-readiness-contract.md](./llm-integration-readiness-contract.md) for the governing boundary on later-stage LLM-powered product integrations and any progression toward drafts or writes.
+- Use [personalization-metrics-shortlist.md](./personalization-metrics-shortlist.md) and [personalization-proposal-policy.md](./personalization-proposal-policy.md) for the current metric and action basis behind this sequencing.
+- Use [llm-integration-readiness-contract.md](./llm-integration-readiness-contract.md) for the governing boundary on any later-stage LLM-powered integration.
+- Use [personalization-philosophy.md](./personalization-philosophy.md) for durable beliefs and non-goals rather than milestone sequencing.
 
 In this roadmap, "LLM-powered" means product surfaces or integrations that use an LLM to explain, structure, draft, or mediate personalization guidance. It does not imply shipped autonomous behavior, write approval, or external tool access. Deterministic automation and first-party product flows remain separate categories from LLM-powered behavior.
 
-## Baseline and source-of-truth pointers
+## Planning basis
 
 Shipped personalization behavior is anchored to [feature-reference.md](./feature-reference.md), including the implemented rolling-window metrics, recommendation outputs, friction telemetry ingestion endpoint, and friction backlog endpoint.
 
@@ -42,9 +49,9 @@ The most explicit dated planning evidence in the durable doc set is the 2026-02-
 
 If subsequent planning analysis changes milestone order, that analysis should be referenced as a dated input or promoted into the relevant canonical companion doc rather than asserted here as undated current truth.
 
-## Foundational milestones
+## Phase 1: Strengthen shipped personalization
 
-This sequence focuses on making shipped personalization more trustworthy, more interpretable, and better instrumented inside existing product surfaces.
+This phase is the main roadmap. It focuses on making shipped personalization more trustworthy, more interpretable, and better instrumented inside existing product surfaces.
 
 ### 1. Recalibrate personal baselines
 
@@ -106,6 +113,8 @@ Why this milestone belongs in the foundational sequence:
 - it tests product value where the product already has user attention
 - it establishes whether assistance-first behavior is useful before any broader interface expansion stage
 
+## Cross-cutting boundary for later expansion
+
 ### 5. Establish a read-safe LLM integration boundary
 
 Primary outcome: keep later-stage LLM-powered product surfaces and integrations read-first until stronger safeguards exist.
@@ -116,46 +125,50 @@ Milestone intent:
 - keep read readiness separate from draft readiness and write readiness
 - use [llm-integration-readiness-contract.md](./llm-integration-readiness-contract.md) as the governing boundary for this progression
 
-Why this milestone belongs in the foundational sequence:
+Why this sits alongside the roadmap instead of ahead of it:
 
-- roadmap language should make the boundary explicit before LLM-related ideas expand
-- subsequent milestones should inherit this gate rather than reinterpret it ad hoc
+- the boundary must be explicit before LLM-related ideas expand
+- it is a constraint on later branches, not a reason to outrank shipped-surface product work
 
-## Conditional expansion milestones
+## Phase 2: Conditional expansion after proof
 
-These are conditional expansion directions, not current commitments. Any LLM-related item below refers to LLM-powered product surfaces or integrations and remains gated until the dependency gates in this roadmap are met.
+These are future directions, not current commitments. They should only be considered after the foundational product work is useful and the relevant gates below are met.
 
-### 1. Drafts with provenance for LLM-powered suggestions
+### Near-following branches once foundations hold
+
+#### 1. Drafts with provenance for LLM-powered suggestions
 
 Target outcome: LLM-powered suggestions can become reviewable drafts with visible provenance, evidence, and target objects before any user-confirmed write path exists.
 
 This remains sequenced after the foundational gates because it depends on a trustworthy read boundary, stronger context capture, and a clear confirmation model.
 
-### 2. Conversational structured capture
+#### 2. Conversational structured capture
 
 Target outcome: an LLM-powered surface can help turn user conversation into explicit structured context fields rather than opaque memory.
 
 This remains sequenced after the foundational gates because structured capture should extend a proven minimal context model, not replace it, and the current sparse-note evidence base does not justify it as a default milestone.
 
-### 3. Dedicated LLM-powered interface or MCP-style integration
+#### 3. Dedicated LLM-powered interface or MCP-style integration
 
 Target outcome: personalization insights and read-safe operations can be exposed through a dedicated LLM-powered interface or MCP-style contract.
 
 This remains sequenced after the foundational gates because interface expansion without stable read semantics would create capability ambiguity faster than product value.
 
-### 4. Calendar-aware interpretation
+### Later optional branches
+
+#### 4. Calendar-aware interpretation
 
 Target outcome: planned schedule anchors can help distinguish deliberate shifts from irregularity and improve interpretation of consistency and recovery needs.
 
 This remains sequenced after the foundational gates because external context should follow a trustworthy internal data and lightweight context foundation.
 
-### 5. Daytime outcome labels
+#### 5. Daytime outcome labels
 
 Target outcome: simple daytime outcome labels can connect nighttime patterns with next-day function and improve prioritization beyond duration and timing alone.
 
 This remains sequenced after the foundational gates because it introduces new collection burden and should follow proof that the sleep-focused guidance loop is already useful.
 
-### 6. Recovery coach evolving toward broader planning
+#### 6. Recovery coach evolving toward broader planning
 
 Target outcome: SleepTracker can eventually move from recovery-oriented interpretation toward broader planning guidance across timing, consistency, and upcoming demands.
 
@@ -165,37 +178,41 @@ This remains sequenced after the foundational gates because it requires stronger
 
 Milestones can move at different speeds, but the sequence should respect these gates.
 
-### Gate 1. Evidence sufficiency for recalibration
+### Foundational proof gates
+
+#### Gate 1. Evidence sufficiency for recalibration
 
 - personal baselines and recent-window patterns are stable enough to support recalibration
 - regularity and social jetlag signals continue to outweigh weaker exercise and notes signals
 
-### Gate 2. Friction observability
+#### Gate 2. Friction observability
 
 - friction telemetry captures enough real events to support ranking and prioritization
 - backlog proposals are justified by observed evidence rather than inferred pain
 
-### Gate 3. Minimal context model
+#### Gate 3. Minimal context model
 
 - the product has a lightweight context layer that improves interpretation without imposing heavy user input cost
 - context fields are explicit enough to support provenance and subsequent LLM-powered mediation
 
-### Gate 4. Assistance-first product fit in shipped surfaces
+#### Gate 4. Assistance-first product fit in shipped surfaces
 
 - read-time recommendations inside shipped surfaces show clear product value
 - recommendation wording and ranking remain guarded, evidence-based, and reversible
 
-### Gate 5. Read-safe LLM integration contract
+### Later-stage LLM graduation gates
+
+#### Gate 5. Read-safe LLM integration contract
 
 - external or cross-surface LLM-powered consumers can read relevant personalization state through a stable contract
 - the read boundary is documented and accepted before any draft or write path is considered
 
-### Gate 6. Draft, confirmation, and rollback model
+#### Gate 6. Draft, confirmation, and rollback model
 
 - later-stage LLM-mediated changes can be represented as drafts with provenance, user review, and rollback semantics
 - no write-capable LLM path should proceed without this gate
 
-### Gate 7. Outcome feedback
+#### Gate 7. Outcome feedback
 
 - the product can measure whether suggestions, drafts, or subsequent mediated actions actually help
 - low-trust or high-correction behavior can be detected early enough to stop graduation
@@ -208,11 +225,3 @@ Milestones can move at different speeds, but the sequence should respect these g
 - A dedicated LLM-powered surface or integration should not outrank value delivery in shipped surfaces before the earlier gates are met.
 - Broad wellness, cohort analytics, or unrelated automation should not be folded into personalization just because the product may add additional LLM-powered features in a later stage.
 - Undated planning observations should not replace the canonical companion docs.
-
-## Companion docs
-
-- Shipped capabilities and constraints: [feature-reference.md](./feature-reference.md)
-- Current metric priorities, thresholds, and dated snapshot basis: [personalization-metrics-shortlist.md](./personalization-metrics-shortlist.md)
-- Current action logic, guardrails, and rollback policy: [personalization-proposal-policy.md](./personalization-proposal-policy.md)
-- Current LLM integration boundary and staged write-readiness gates: [llm-integration-readiness-contract.md](./llm-integration-readiness-contract.md)
-- Durable personalization beliefs and north-star framing: [personalization-philosophy.md](./personalization-philosophy.md)

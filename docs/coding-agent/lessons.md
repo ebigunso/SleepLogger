@@ -243,6 +243,37 @@ Prevention:
 Evidence:
 - User correction on 2026-03-20: "You shouldn't just dance around potential issues like this, but rather work to remedy them."
 
+## 2026-03-20 — Durable docs need narrative weighting, not flat peer lists  [tags: docs, communication, structure, emphasis]
+
+Context:
+- Plan: Follow-up refactor of durable personalization docs
+- Task/Wave: Pre-plan structural narrative audit
+- Roles involved: Orchestrator, User
+
+Deviation:
+- I wrote durable docs whose sections and lists gave too many ideas equal visual and rhetorical weight.
+- Important framing, governing rules, and milestone priorities were present, but they were not foregrounded strongly enough for a reader to see the main story quickly.
+
+Root cause:
+- I optimized for completeness and coverage instead of deciding which few ideas were foundational and which belonged as support material.
+- I allowed long peer lists, repeated caveats, and early support sections to flatten the emphasis structure of the documents.
+
+Fix applied:
+- Paused to audit the docs specifically for narrative weighting and tiering problems before making more wording tweaks.
+- Re-scoped the next doc pass around structural emphasis: primary claim first, grouped tiers, and supporting detail later.
+
+Prevention:
+- Primary promotion target: global-skill
+- Candidate prevention rule (optional):
+  - audience: orchestrator
+  - proposed rule: For durable strategy or policy docs, identify the one governing claim and the two or three highest-priority ideas before drafting, then structure the document so those appear before peer lists, support tables, or companion-routing detail.
+- Optional guardrail:
+  - Before finalizing a durable doc, check whether the first screen shows the main story and whether any 5-plus-item section should instead be grouped into foundational, supporting, or later-stage tiers.
+
+Evidence:
+- User correction on 2026-03-20: the docs showed a tendency to give everything equal tone instead of emphasizing what matters most.
+
+
 ## 2026-03-16 — Durable product docs must separate philosophy from milestone and boundary detail  [tags: docs, communication, roadmap, abstraction]
 
 Context:

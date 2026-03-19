@@ -3,7 +3,7 @@
 ## Metadata
 
 - status: draft
-- last_updated: 2026-03-18
+- last_updated: 2026-03-20
 - doc_role: durable product philosophy and aspiration reference for personalization
 - canonical_for: core personalization beliefs, north-star aspirations, durable non-goals, and trust boundaries
 - not_canonical_for: shipped feature inventory, roadmap sequencing, implementation details, endpoint behavior, or readiness approval for LLM integrations
@@ -17,6 +17,10 @@ It explains what personalization is meant to optimize for, which trust boundarie
 
 This page is intentionally not a roadmap and not a record of shipped behavior. It should remain useful even as implementation details, milestones, and specific interfaces change.
 
+## Philosophy thesis
+
+SleepTracker personalization should earn influence from repeated user-specific sleep evidence, improve first-party product flows before expanding scope, and stay conservative about autonomy until provenance, reversibility, and user control are credible.
+
 ## How to use this doc
 
 - Use this page when deciding whether a personalization idea fits the product's long-term direction.
@@ -28,25 +32,35 @@ This page is intentionally not a roadmap and not a record of shipped behavior. I
 
 If this document and a companion document appear to disagree, defer to the companion doc for its own domain: shipped truth belongs in the feature reference, sequencing belongs in the roadmap, and LLM integration boundaries belong in the readiness contract.
 
-## Core product beliefs
+## Belief tiers
 
-### Personalization should be evidence-first
+The beliefs below are intentionally tiered. Foundational beliefs define what personalization is for, supporting constraints define how the product should behave while pursuing that philosophy, and expansion boundaries define what must be proven before scope grows.
+
+### Foundational beliefs
+
+#### Personalization should be evidence-first
 
 SleepTracker personalization should be grounded in user-specific evidence before it becomes more adaptive, more assertive, or more automated. Strong recurring signal matters more than plausible theory. The product should prefer patterns that can be traced to repeated user data over rules that merely sound helpful.
 
-### User-trusted data outranks convenience
+#### User-trusted data outranks convenience
 
 The product should favor trustworthy, reviewable inputs over shortcuts that create ambiguity. If a behavior would be easier to ship but would weaken trust in where a recommendation came from, the trust-preserving path is the right default.
 
-### Real signal should outrank weak correlation
+#### Real signal should outrank weak correlation
 
 Not every captured field deserves equal influence. Personalization should emphasize timing regularity, schedule shift, duration baselines, and other signals that show stable value. Weak or sparse signals should remain secondary until they become strong enough to justify product weight.
 
-### Helpfulness should start inside first-party product flows
+#### Helpfulness should start inside first-party product flows
 
 The product should first become more useful inside its own trusted surfaces: logging, review, dashboard, and trends experiences. Personalization should improve interpretation, defaults, and guidance inside those flows before expanding into separate LLM-powered surfaces.
 
-### Deterministic automation and LLM-powered behavior are different categories
+#### Recovery help should earn broader usefulness
+
+The most credible foundational value is helping users recover from poor sleep, irregular timing, and schedule disruption using strong personal evidence. Broader usefulness, such as richer planning or expanded context-aware guidance, should follow only when recovery-focused help proves reliable and worth extending.
+
+### Supporting product constraints
+
+#### Deterministic automation and LLM-powered behavior are different categories
 
 SleepTracker should treat three behavior categories as distinct:
 
@@ -56,50 +70,58 @@ SleepTracker should treat three behavior categories as distinct:
 
 These categories should not be collapsed into one generic interaction category. Deterministic product automation can be valuable without implying LLM involvement, and possible LLM surfaces should remain constrained by stricter evidence, provenance, and user-control requirements.
 
-### LLM assistance should remain user-controlled
+#### LLM assistance should remain user-controlled
 
 If SleepTracker adds LLM-powered experiences, they should assist the user rather than take over authorship. The system should prefer explanation, drafting, and recommendation over silent action. LLM help should be reviewable, attributable, and easy for the user to reject.
 
-### Provenance and reversibility come before autonomy
+#### Provenance and reversibility come before autonomy
 
 Any move from read-only help toward drafted or applied changes should require clear provenance and easy reversal before broader autonomy is considered. The product should know what evidence informed a suggestion, how that suggestion differs from saved data, and how a user can undo it.
 
-### Recovery help should earn broader usefulness
+### Expansion boundaries
 
-The most credible foundational value is helping users recover from poor sleep, irregular timing, and schedule disruption using strong personal evidence. Broader usefulness, such as richer planning or expanded context-aware guidance, should follow only when recovery-focused help proves reliable and worth extending.
+#### Expansion must be earned rather than assumed
 
-## North-star aspirations
+New personalization surfaces should be justified by demonstrated value, trustworthy signals, and a clear reduction in user effort or confusion. Expansion should follow proof, not novelty.
 
-### A product that understands the user's own sleep patterns better than generic heuristics do
-
-Personalization should increasingly reflect the user's observed baselines, recurring shifts, and meaningful variability instead of relying on one-size-fits-all thresholds.
-
-### A product that explains itself
-
-Users should be able to understand why a recommendation appears, which inputs influenced it, and how confident the system is. SleepTracker should become more interpretable as personalization becomes more sophisticated.
-
-### A product that earns permission before it expands scope
-
-New personalization surfaces should be justified by demonstrated value, trustworthy signals, and a clear reduction in user effort or confusion. Expansion should be earned, not assumed.
-
-### A product that stays conservative about action
+#### Strong guidance can arrive before stronger action
 
 SleepTracker should be comfortable offering strong read-time guidance while remaining cautious about writes, side effects, and cross-system actions. More action should require more proof.
 
-### A product that can support LLM-powered help without surrendering control
+#### LLM-powered help is an optional later layer, not the default destination
 
 If LLM-powered integrations become worthwhile, they should operate as constrained layers on top of trusted product data and explicit user review. They should not replace first-party product flows or blur responsibility for saved changes.
 
+## Reinforced aspirations
+
+The aspirations below reinforce the philosophy above rather than acting as separate slogans.
+
+### What the product should increasingly become
+
+- A product that understands the user's own sleep patterns better than generic heuristics do.
+- A product that explains itself clearly enough that users can see why a recommendation appeared, which inputs mattered, and how confident the system is.
+- A product that earns permission before it expands scope.
+
+### What must remain true as it grows
+
+- A product that stays conservative about action even when it becomes more helpful at read time.
+- A product that can support LLM-powered help without surrendering control.
+
 ## Durable non-goals
 
-- Personalization is not meant to chase broad novelty without evidence that it improves user outcomes.
+### Hard boundaries
+
 - Personalization is not meant to treat sparse signals, weak correlations, or anecdotal patterns as primary decision inputs.
 - Personalization is not meant to turn existing user CRUD capability into implicit approval for LLM-mediated writes.
 - Personalization is not meant to hide recommendation basis, confidence, or authorship behind opaque automation.
-- Personalization is not meant to depend on external integrations, calendars, tasks, or ambient data before core internal signals justify that expansion.
-- Personalization is not meant to introduce LLM-powered surfaces merely because summarization is technically possible.
 - Personalization is not meant to optimize for autonomy before provenance, confirmation, and reversibility are credible.
 - Personalization is not meant to become a substitute for first-party product clarity inside the main SleepTracker flows.
+
+### Not-yet-justified expansions
+
+- Personalization is not meant to chase broad novelty without evidence that it improves user outcomes.
+- Personalization is not meant to depend on external integrations, calendars, tasks, or ambient data before core internal signals justify that expansion.
+- Personalization is not meant to introduce LLM-powered surfaces merely because summarization is technically possible.
 
 ## Relationship to companion docs
 

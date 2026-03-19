@@ -15,6 +15,8 @@ This document defines the durable boundary for LLM integration in SleepTracker a
 
 It is a guardrail reference, not an implementation spec. It describes the approved LLM read posture, the actions that remain out of scope, and the prerequisites for any staged progression toward drafts or user-confirmed writes.
 
+Default stance: keep any LLM-powered surface at Stage 1 read-only analysis unless the later-stage prerequisites in this contract are explicitly satisfied and remain credible in production.
+
 ## Terminology And Scope
 
 For this document, the following terms are used consistently:
@@ -70,31 +72,35 @@ The existence of user-driven CRUD endpoints does not make those endpoints LLM-ap
 
 ## Prerequisites For LLM-Generated Drafts Or LLM-Mediated Writes
 
-No LLM-generated draft flow or LLM-mediated write path should be considered roadmap-ready until all of the following foundations exist and are credible in production:
+No LLM-generated draft flow or LLM-mediated write path should be considered roadmap-ready until both the hard safety gates and the product-readiness evidence below exist and are credible in production.
 
-### 1. Friction telemetry strong enough to justify intervention
+### Hard safety gates
 
-LLM-generated proposals should be informed by observed user friction, not by assumption. The product needs sustained friction telemetry that can identify repeated workflow pain, estimate likely benefit, and distinguish persistent problems from one-off noise.
-
-### 2. Richer context capture
-
-Shipped product truth does not yet provide a robust context layer for intent capture beyond existing first-party records and derived metrics. Before LLM-generated drafts or writes are considered, the product needs richer structured context about what the user is trying to do, why the suggestion is relevant, and which existing signals support it.
-
-### 3. Drafts and provenance
+#### 1. Drafts and provenance
 
 Any later-stage LLM-generated change must first exist as a draft with clear provenance. The product needs a model that records what was proposed, which inputs informed it, when it was generated, and how it differs from saved data.
 
 Without drafts and provenance, there is no durable review boundary and no safe authorship trail.
 
-### 4. Explicit confirmation
+#### 2. Explicit confirmation
 
 The user must have a clear confirmation step before any LLM-originated mutation is committed. Confirmation must make the proposed change, its basis, and its target object obvious enough to prevent silent or ambiguous writes.
 
-### 5. Reversible flows
+#### 3. Reversible flows
 
 Every LLM-originated change path needs a straightforward rollback or undo path. Reversibility is required for user trust and for operational safety when suggestions are wrong, stale, or based on incomplete context.
 
-### 6. Stronger outcome feedback
+### Product-readiness evidence
+
+#### 4. Friction telemetry strong enough to justify intervention
+
+LLM-generated proposals should be informed by observed user friction, not by assumption. The product needs sustained friction telemetry that can identify repeated workflow pain, estimate likely benefit, and distinguish persistent problems from one-off noise.
+
+#### 5. Richer context capture
+
+Shipped product truth does not yet provide a robust context layer for intent capture beyond existing first-party records and derived metrics. Before LLM-generated drafts or writes are considered, the product needs richer structured context about what the user is trying to do, why the suggestion is relevant, and which existing signals support it.
+
+#### 6. Stronger outcome feedback
 
 The product needs outcome feedback that can show whether LLM suggestions or LLM-mediated write flows actually help. This includes evidence about acceptance, abandonment, corrections after acceptance, and whether the proposed action improved the intended user outcome.
 
