@@ -1,23 +1,28 @@
 # Personalization agent action map
 
-This is a companion to `docs/personalization-metrics-shortlist.md`.
-It maps each high-priority metric to concrete autonomous actions, including trigger thresholds and guardrails.
+- status: draft
+- last_updated: 2026-03-18
+- doc_role: guarded deterministic proposal policy for personalization actions
+- canonical_for: trigger logic, guardrails, confidence thresholds, rollback expectations, and proposal templates tied to personalization metrics
+- not_canonical_for: shipped feature inventory, roadmap sequencing, durable philosophy, or blanket approval for LLM-powered actions
+
+This is a policy companion to [personalization-metrics-shortlist.md](./personalization-metrics-shortlist.md).
+It maps each high-priority metric to concrete deterministic proposal candidates, including trigger thresholds and guardrails.
+
+Despite the file name, this document does not grant a generic agent or LLM permission to act. It defines when SleepTracker's deterministic product logic may surface or rank proposals, and it should be read alongside [feature-reference.md](./feature-reference.md) for shipped behavior, [personalization-philosophy.md](./personalization-philosophy.md) for durable product intent, [personalization-roadmap.md](./personalization-roadmap.md) for phased direction, and [assistant-readiness-contract.md](./assistant-readiness-contract.md) for the separate LLM integration boundary.
 
 ## How to use this page
 
-- Treat each row as a candidate automation rule.
+- Treat each row as a guarded proposal rule, not as automatic permission to mutate user data.
 - Run rules on a rolling window (for example: 28 days), then compare with the prior window.
-- Apply only when trigger + confidence + guardrails are all satisfied.
+- Surface or rank a proposal only when trigger + confidence + guardrails are all satisfied.
+- Keep shipped read and write capabilities anchored to [feature-reference.md](./feature-reference.md); keep any future LLM-mediated behavior constrained by [assistant-readiness-contract.md](./assistant-readiness-contract.md).
 
 ## Backend endpoint mapping
 
+This page references shipped endpoints that support the current deterministic personalization policy. Endpoint inventory and product truth remain canonical in [feature-reference.md](./feature-reference.md).
+
 Backend endpoints used by this map:
-
-- `GET /api/trends/personalization`
-- `POST /api/personalization/friction-telemetry`
-- `GET /api/personalization/friction-backlog`
-
-These endpoints are available as part of the API:
 
 - `GET /api/trends/personalization`
 - `POST /api/personalization/friction-telemetry`
@@ -61,6 +66,8 @@ Purpose-first mapping for the existing Trends page metric toggle.
 
 ## Backlog proposal policy (for autonomous suggestions)
 
+These rules govern proposal generation inside SleepTracker's deterministic product logic. They do not authorize LLM-generated writes, hidden side effects, or broader assistant behavior beyond the boundary described in [assistant-readiness-contract.md](./assistant-readiness-contract.md).
+
 When generating a feature/change proposal, include:
 
 1. **Observed evidence** (counts/rates/deltas in current + prior window)
@@ -98,3 +105,4 @@ Only auto-promote proposals when confidence is **medium or higher**.
 - No cohort comparisons or broad product analytics.
 - No heavy event instrumentation beyond friction telemetry required for ranking.
 - No automatic action when confidence is low or data quality guardrails fail.
+- No implication that current first-party CRUD or telemetry endpoints are approved for LLM-mediated writes.

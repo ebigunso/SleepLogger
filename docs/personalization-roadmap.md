@@ -1,257 +1,218 @@
-# Personalization roadmap
+# SleepTracker Personalization Roadmap
+
+## Metadata
+
+- status: draft
+- last_updated: 2026-03-18
+- doc_role: phased personalization roadmap and dependency reference
+- canonical_for: planned personalization milestones, sequencing, dependency gates, and explicit non-commitments
+- not_canonical_for: shipped product behavior, durable product philosophy, metric definitions, action policy, or implementation status claims
+- freshness_semantics: directional by design; treat shipped status and dated evidence as anchored to linked companion docs rather than as standalone truth here
 
 ## Purpose
 
-This document is a durable product strategy reference for SleepTracker personalization.
+This document is the roadmap for how SleepTracker personalization should mature from better evidence-backed guidance in shipped surfaces toward possible later-stage LLM-powered product surfaces and integrations.
 
-Use it to:
+Use it to understand milestone order, readiness gates, and what is intentionally deferred. Do not use it as proof that a capability is already shipped, approved, or scheduled for a specific release.
 
-- understand the current evidence base behind personalization priorities
-- align short-term and longer-horizon roadmap thinking
-- evaluate whether future ideas are ready to move into design or implementation work
+For durable product beliefs, aspirations, and non-goals beyond milestone interpretation, use [personalization-philosophy.md](./personalization-philosophy.md) when consulting the personalization document set.
 
-This document is not an execution plan, release note, or source of shipped-feature truth.
+## How to read this roadmap
 
-## How to use this document
+- Treat every milestone here as directional and gated.
+- Treat dated evidence as planning input, not floating current truth.
+- Use [feature-reference.md](./feature-reference.md) for shipped behavior.
+- Use [personalization-metrics-shortlist.md](./personalization-metrics-shortlist.md) for the current metric shortlist, thresholds, and dated planning snapshot basis.
+- Use [personalization-agent-action-map.md](./personalization-agent-action-map.md) for trigger logic, guardrails, confidence thresholds, and rollback policy.
+- Use [assistant-readiness-contract.md](./assistant-readiness-contract.md) for the governing boundary on later-stage LLM-powered product integrations and any progression toward drafts or writes.
 
-- Treat this page as roadmap guidance, not as a statement that listed items are already shipped.
-- Use [feature-reference.md](./feature-reference.md) for current implemented behavior.
-- Use [personalization-metrics-shortlist.md](./personalization-metrics-shortlist.md) and [personalization-agent-action-map.md](./personalization-agent-action-map.md) for the current metric and action logic that informs this roadmap.
-- Use [assistant-readiness-contract.md](./assistant-readiness-contract.md) as the companion document for read-first assistant boundaries and future write-readiness gates.
+In this roadmap, "LLM-powered" means product surfaces or integrations that use an LLM to explain, structure, draft, or mediate personalization guidance. It does not imply shipped autonomous behavior, write approval, or external tool access. Deterministic automation and first-party product flows remain separate categories from LLM-powered behavior.
 
-## Current shipped truth lives elsewhere
+## Baseline and source-of-truth pointers
 
-Current shipped behavior belongs in [feature-reference.md](./feature-reference.md), especially the Personalization section describing the existing rolling-window metrics, recommendation outputs, friction telemetry ingestion endpoint, and friction backlog endpoint.
+Shipped personalization behavior is anchored to [feature-reference.md](./feature-reference.md), including the implemented rolling-window metrics, recommendation outputs, friction telemetry ingestion endpoint, and friction backlog endpoint.
 
-This roadmap intentionally goes beyond current implementation, but future-facing items here should be read as directional and gated rather than approved commitments.
+Metric and action logic that informs milestone order is anchored to [personalization-metrics-shortlist.md](./personalization-metrics-shortlist.md) and [personalization-agent-action-map.md](./personalization-agent-action-map.md). This roadmap can summarize why those sources matter, but it does not replace them.
 
-## Current evidence snapshot
+The most explicit dated planning evidence in the durable doc set is the 2026-02-17 backend snapshot captured in [personalization-metrics-shortlist.md](./personalization-metrics-shortlist.md). As of that dated snapshot:
 
-The present roadmap is grounded in repo documentation plus recent planning analysis of the live database.
+- personal duration, timing, regularity, and social jetlag signals were strong enough to justify foundational roadmap priority
+- exercise-conditioned and notes-conditioned signals were still weak and should remain secondary
+- friction cost metrics were high value in principle but under-instrumented in practice
 
-Durable current-product truth still lives in the linked source docs. Exact operational counts from planning-time snapshots should be treated as temporary planning evidence unless they are promoted into an upstream source document.
+If subsequent planning analysis changes milestone order, that analysis should be referenced as a dated input or promoted into the relevant canonical companion doc rather than asserted here as undated current truth.
 
-### Repo-backed product baseline
+## Foundational milestones
 
-- Personalization already exists as an API-backed capability centered on rolling-window metrics, recommendation outputs, friction telemetry ingestion, and ranked backlog proposals.
-- The current metric shortlist prioritizes personal duration and timing baselines, social jetlag, schedule variability, quality-aligned factor ranking, and friction cost metrics.
-- The current action map emphasizes guarded, evidence-based actions with explicit triggers, confidence thresholds, and rollback conditions.
+This sequence focuses on making shipped personalization more trustworthy, more interpretable, and better instrumented inside existing product surfaces.
 
-### Live-data findings informing roadmap priority
+### 1. Recalibrate personal baselines
 
-- Recent planning analysis reinforced that the dataset is now larger than the earlier documented snapshot and is consistent enough to support stronger baseline calibration work.
-- Regularity and social-jetlag signals remain strong enough to justify near-term prioritization.
-- Exercise and notes signals remain weak, so they should not drive primary personalization logic yet.
-- Friction telemetry remains effectively unobserved in planning analysis, which means the instrumentation path exists but is not yet producing useful decision input.
-- Recent logging consistency appears strong enough to support heavier use of recent-window patterns.
+Primary outcome: move from coarse static interpretation toward stronger personal baseline windows where sample quality supports it.
 
-## Strategy principles
+Milestone intent:
 
-1. Keep current truth separate from roadmap intent.
-2. Let personal evidence outrank generic heuristics when sample quality is sufficient.
-3. Prioritize assistance-first experiences before autonomous write behavior.
-4. Prefer regularity, timing stability, and schedule-shift guidance where evidence is already strong.
-5. Add instrumentation before committing to UX automation where evidence is currently missing.
-6. Use guarded rollout gates, clear provenance, and reversible decisions for any assistant-mediated action.
-7. Defer domains with weak signal rather than overfitting thin data.
+- recalibrate unusual-duration and timing interpretation against personal baseline windows instead of relying only on fixed global heuristics
+- emphasize regularity and social jetlag interpretation because they are the strongest dated signals in the current evidence base
+- keep exercise-conditioned and notes-conditioned logic secondary until those signals improve
 
-## Short-term roadmap
+Why this milestone belongs in the foundational sequence:
 
-The short-term roadmap focuses on making current personalization more trustworthy, better instrumented, and more useful within already-shipped product surfaces.
+- it builds directly on the current metric shortlist rather than requiring a new product category
+- it improves trust in already shipped personalization outputs before expanding scope
 
-### 1. Threshold recalibration
+### 2. Make friction telemetry decision-useful
 
-Goal: replace coarse static assumptions with stronger personal baselines where the current data volume supports it.
+Primary outcome: turn the existing friction telemetry path into planning evidence that can justify backlog ranking and UX changes.
 
-Direction:
+Milestone intent:
 
-- recalibrate unusual-duration and timing interpretation against personal baseline windows rather than relying only on fixed global heuristics
-- emphasize regularity and social-jetlag interpretation because those are the strongest verified signals right now
-- keep exercise-conditioned and notes-conditioned logic secondary until signal quality improves
+- verify capture coverage across relevant user flows
+- record enough context to explain failed, delayed, or repaired interactions
+- require stable reviewable evidence before friction backlog ranking drives prioritization
 
-Why now:
+Why this milestone belongs in the foundational sequence:
 
-- the personalization shortlist already identifies personal baselines, social jetlag, and variability as the highest-value implemented-first metrics
-- current logging consistency is high enough to support recent-window recalibration
+- friction cost metrics are high leverage only when they are observed, not assumed
+- stronger instrumentation is a prerequisite for subsequent automation or LLM-mediated product decisions
 
-### 2. Friction instrumentation
+### 3. Add lightweight context capture
 
-Goal: make the friction telemetry path decision-useful rather than nominally present.
+Primary outcome: improve read-time interpretation by collecting small amounts of structured context that explain timing changes without creating a heavy journaling workflow.
 
-Direction:
+Milestone intent:
 
-- verify that friction telemetry is emitted at the right points in the current user flows
-- capture enough context to explain failed, delayed, or repaired interactions
-- produce stable, reviewable evidence before using friction backlog ranking to drive product changes
+- prioritize context that explains schedule shifts, irregularity, and recovery patterns
+- keep structured capture explicit, minimal, and reviewable
+- avoid treating free text or sparse notes as a primary personalization driver
 
-Why now:
+Why this milestone belongs in the foundational sequence:
 
-- the current roadmap cannot prioritize friction-reduction work confidently when observed friction events remain at 0
-- the metrics shortlist and action map both treat friction cost metrics as high-ROI, but only after meaningful capture exists
+- strong timing signals are more useful when the product can distinguish intentional shifts from noise
+- a minimal context model is needed before any later-stage LLM-powered drafting or mediation can be trustworthy
 
-### 3. Context capture
+### 4. Improve guidance in shipped surfaces first
 
-Goal: improve the usefulness of read-time interpretation by adding lightweight context that explains timing changes without forcing a heavy journaling workflow.
+Primary outcome: make existing surfaces more helpful before introducing a separate LLM-powered surface or integration.
 
-Direction:
+Milestone intent:
 
-- focus first on context that helps interpret schedule shifts, irregularity, and recovery patterns
-- keep structured capture small and reviewable
-- avoid overbuilding around notes or free text until repeated signal appears in the data
-
-Why now:
-
-- timing and regularity are strong signals, but their interpretation benefits from knowing whether shifts were intentional, exceptional, or recurring
-- notes signal remains too weak to justify note-driven personalization as a primary path
-
-### 4. Assistance-first UX in current surfaces
-
-Goal: make existing surfaces more helpful without introducing a separate assistant product prematurely.
-
-Direction:
-
-- improve guidance inside currently shipped surfaces such as dashboard, trends, and sleep-entry flows
+- improve guidance in shipped dashboard, trends, and sleep-entry experiences
 - favor read-time insights, recommended defaults, and contextual warnings over autonomous action
-- keep messaging directional and non-causal, consistent with the current action-map guardrails
+- keep wording directional and evidence-based, consistent with the current action-map guardrails
 
-Why now:
+Why this milestone belongs in the foundational sequence:
 
-- the current codebase already has personalization and trends surfaces that can host better guidance
-- the strongest current opportunity is better interpretation, not a new interface layer
+- it tests product value where the product already has user attention
+- it establishes whether assistance-first behavior is useful before any broader interface expansion stage
 
-### 5. External read contract before assistant writes
+### 5. Establish a read-safe LLM integration boundary
 
-Goal: make any future assistant integration read-first and evidence-first before it can draft or write anything.
+Primary outcome: keep later-stage LLM-powered product surfaces and integrations read-first until stronger safeguards exist.
 
-Direction:
+Milestone intent:
 
-- require a stable external read contract before any external assistant can act on personalization state
-- separate read readiness from write readiness
-- treat the companion [assistant-readiness-contract.md](./assistant-readiness-contract.md) as the governing boundary for future assistant behavior
+- require a stable read contract before any LLM-powered integration can mediate personalization state
+- keep read readiness separate from draft readiness and write readiness
+- use [assistant-readiness-contract.md](./assistant-readiness-contract.md) as the governing boundary for this progression
 
-Why now:
+Why this milestone belongs in the foundational sequence:
 
-- the roadmap includes future assistant-oriented concepts, but current repo truth does not justify write-capable behavior
-- durable roadmap guidance should make this boundary explicit early so later work does not skip it
+- roadmap language should make the boundary explicit before LLM-related ideas expand
+- subsequent milestones should inherit this gate rather than reinterpret it ad hoc
 
-## Longer-horizon roadmap
+## Conditional expansion milestones
 
-These items are conditional future directions. They are not current commitments, and they should advance only after the dependency gates below are satisfied.
+These are conditional expansion directions, not current commitments. Any LLM-related item below refers to LLM-powered product surfaces or integrations and remains gated until the dependency gates in this roadmap are met.
 
-### Drafts and provenance
+### 1. Drafts with provenance for LLM-powered suggestions
 
-Future direction:
+Target outcome: LLM-powered suggestions can become reviewable drafts with visible provenance, evidence, and target objects before any user-confirmed write path exists.
 
-- assistant-supported changes should start as drafts with visible provenance, evidence, and user review steps
-- recommendations should cite the metrics or context that produced them
+This remains sequenced after the foundational gates because it depends on a trustworthy read boundary, stronger context capture, and a clear confirmation model.
 
-Why it belongs later:
+### 2. Conversational structured capture
 
-- this depends on a trustworthy read contract, stronger context capture, and a clear confirmation model before any write path exists
+Target outcome: an LLM-powered surface can help turn user conversation into explicit structured context fields rather than opaque memory.
 
-### Conversational structured capture
+This remains sequenced after the foundational gates because structured capture should extend a proven minimal context model, not replace it, and the current sparse-note evidence base does not justify it as a default milestone.
 
-Future direction:
+### 3. Dedicated LLM-powered interface or MCP-style integration
 
-- allow conversational input to populate structured sleep-related context rather than relying only on forms
-- keep captured output normalized into explicit fields, not opaque assistant memory
+Target outcome: personalization insights and read-safe operations can be exposed through a dedicated LLM-powered interface or MCP-style contract.
 
-Why it belongs later:
+This remains sequenced after the foundational gates because interface expansion without stable read semantics would create capability ambiguity faster than product value.
 
-- structured capture should follow, not replace, a proven minimal context model
-- current weak notes signal does not yet justify free-form conversational capture as the primary near-term path
+### 4. Calendar-aware interpretation
 
-### Assistant interface or MCP
+Target outcome: planned schedule anchors can help distinguish deliberate shifts from irregularity and improve interpretation of consistency and recovery needs.
 
-Future direction:
+This remains sequenced after the foundational gates because external context should follow a trustworthy internal data and lightweight context foundation.
 
-- expose personalization insights and read-safe operations through a dedicated assistant interface or MCP-style contract
-- treat this as an interface decision layered on top of durable read semantics, not as the first step
+### 5. Daytime outcome labels
 
-Why it belongs later:
+Target outcome: simple daytime outcome labels can connect nighttime patterns with next-day function and improve prioritization beyond duration and timing alone.
 
-- interface expansion without a stable read boundary would create capability ambiguity faster than product value
+This remains sequenced after the foundational gates because it introduces new collection burden and should follow proof that the sleep-focused guidance loop is already useful.
 
-### Calendar awareness
+### 6. Recovery coach evolving toward broader planning
 
-Future direction:
+Target outcome: SleepTracker can eventually move from recovery-oriented interpretation toward broader planning guidance across timing, consistency, and upcoming demands.
 
-- use calendar-aware context to distinguish deliberate schedule shifts from unplanned irregularity
-- improve interpretation of social jetlag, consistency, and recovery needs using known schedule anchors
-
-Why it belongs later:
-
-- external context should only be added after the core sleep-data and lightweight internal-context path is trustworthy
-
-### Daytime outcome labels
-
-Future direction:
-
-- add simple daytime outcome labels that help connect nighttime patterns with next-day function
-- use them to improve prioritization beyond duration and timing alone
-
-Why it belongs later:
-
-- this introduces a new data-collection burden and should wait until current sleep-focused guidance is demonstrably useful
-
-### Recovery coach evolving toward energy planner
-
-Future direction:
-
-- start from recovery-oriented interpretation and eventually support broader energy-planning guidance across sleep timing, consistency, and upcoming demands
-
-Why it belongs later:
-
-- this requires stronger context, better outcome labels, and tighter assistant-readiness controls than the product has today
+This remains sequenced after the foundational gates because it requires stronger context, better outcome feedback, and tighter LLM-readiness controls than the product's documented baseline currently allows.
 
 ## Dependency gates
 
-Short-term roadmap items can move at different speeds, but the overall sequence should respect these gates.
+Milestones can move at different speeds, but the sequence should respect these gates.
 
-### Gate 1. Evidence sufficiency
+### Gate 1. Evidence sufficiency for recalibration
 
-- personal baselines and recent-window patterns remain stable enough to support recalibration
-- strong regularity and social-jetlag signals continue to outweigh weaker exercise and notes signals
+- personal baselines and recent-window patterns are stable enough to support recalibration
+- regularity and social jetlag signals continue to outweigh weaker exercise and notes signals
 
 ### Gate 2. Friction observability
 
 - friction telemetry captures enough real events to support ranking and prioritization
-- backlog proposals can be justified with observed evidence rather than inferred pain
+- backlog proposals are justified by observed evidence rather than inferred pain
 
 ### Gate 3. Minimal context model
 
-- the product has a lightweight, durable context layer that improves interpretation without creating heavy input burden
-- context fields are explicit enough to support provenance and later assistant use
+- the product has a lightweight context layer that improves interpretation without imposing heavy user input cost
+- context fields are explicit enough to support provenance and subsequent LLM-powered mediation
 
-### Gate 4. Assistance-first product fit
+### Gate 4. Assistance-first product fit in shipped surfaces
 
-- read-time recommendations inside current surfaces produce clear value before a separate assistant surface is pursued
+- read-time recommendations inside shipped surfaces show clear product value
 - recommendation wording and ranking remain guarded, evidence-based, and reversible
 
-### Gate 5. External read contract
+### Gate 5. Read-safe LLM integration contract
 
-- external consumers can read the relevant personalization state through a stable contract
-- the read contract is documented and accepted before any draft or write path is considered
+- external or cross-surface LLM-powered consumers can read relevant personalization state through a stable contract
+- the read boundary is documented and accepted before any draft or write path is considered
 
-### Gate 6. Draft and confirmation model
+### Gate 6. Draft, confirmation, and rollback model
 
-- future assistant-mediated changes can be represented as drafts with provenance, user review, and rollback semantics
-- no write-capable behavior should proceed without this gate
+- later-stage LLM-mediated changes can be represented as drafts with provenance, user review, and rollback semantics
+- no write-capable LLM path should proceed without this gate
 
-## Defer and non-goals
+### Gate 7. Outcome feedback
 
-The following are explicitly deferred or out of scope for this roadmap phase.
+- the product can measure whether suggestions, drafts, or subsequent mediated actions actually help
+- low-trust or high-correction behavior can be detected early enough to stop graduation
 
-- Do not treat speculative assistant features as currently shipped behavior.
-- Do not prioritize exercise-conditioned or notes-conditioned personalization as a primary roadmap driver while those signals remain weak.
-- Do not introduce autonomous writes, silent preference mutation, or opaque assistant memory.
-- Do not create a separate assistant interface before read-time guidance inside existing surfaces has proven value.
-- Do not expand into broad wellness or cohort analytics under the personalization banner.
-- Do not replace current source-of-truth docs with roadmap language.
+## Deferred items and non-commitments
 
-## Companion documents
+- This roadmap does not make any milestone a shipped truth claim.
+- This roadmap does not approve autonomous writes, silent preference mutation, or opaque LLM memory.
+- Exercise-conditioned and notes-conditioned personalization should not become primary roadmap drivers while their signals remain weak.
+- A dedicated LLM-powered surface or integration should not outrank value delivery in shipped surfaces before the earlier gates are met.
+- Broad wellness, cohort analytics, or unrelated automation should not be folded into personalization just because the product may add additional LLM-powered features in a later stage.
+- Undated planning observations should not replace the canonical companion docs.
 
-- Current shipped capabilities: [feature-reference.md](./feature-reference.md)
-- Current metric priorities and go or no-go thresholds: [personalization-metrics-shortlist.md](./personalization-metrics-shortlist.md)
-- Current guarded action logic and proposal policy: [personalization-agent-action-map.md](./personalization-agent-action-map.md)
-- Assistant boundary companion: [assistant-readiness-contract.md](./assistant-readiness-contract.md)
+## Companion docs
+
+- Shipped capabilities and constraints: [feature-reference.md](./feature-reference.md)
+- Current metric priorities, thresholds, and dated snapshot basis: [personalization-metrics-shortlist.md](./personalization-metrics-shortlist.md)
+- Current action logic, guardrails, and rollback policy: [personalization-agent-action-map.md](./personalization-agent-action-map.md)
+- Current LLM integration boundary and staged write-readiness gates: [assistant-readiness-contract.md](./assistant-readiness-contract.md)
+- Durable personalization beliefs and north-star framing: [personalization-philosophy.md](./personalization-philosophy.md)

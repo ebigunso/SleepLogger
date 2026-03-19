@@ -1,140 +1,144 @@
-# Assistant Readiness Contract
+# SleepTracker LLM Integration Boundary Contract
+
+## Metadata
+
+- status: active
+- last_updated: 2026-03-18
+- doc_role: durable boundary and readiness contract for LLM integration in SleepTracker
+- canonical_for: approved LLM read boundary, prohibited LLM actions, and prerequisites for LLM-generated drafts or LLM-mediated writes
+- not_canonical_for: shipped feature inventory, roadmap sequencing, API behavior, or approval of speculative integrations
+- freshness_semantics: durable by design; use companion docs for shipped status, staged sequencing, and dated planning evidence
 
 ## Purpose
 
-This document defines the durable boundary for assistant behavior in SleepTracker and the conditions that must be met before any future assistant write path becomes roadmap-ready.
+This document defines the durable boundary for LLM integration in SleepTracker and the conditions that must be met before any LLM-generated draft or LLM-mediated write path becomes roadmap-ready.
 
-It is a guardrail reference, not an implementation spec. It describes current product truth, the approved read posture for assistance, and the prerequisites for any later progression toward drafts or user-confirmed writes.
+It is a guardrail reference, not an implementation spec. It describes the approved LLM read posture, the actions that remain out of scope, and the prerequisites for any staged progression toward drafts or user-confirmed writes.
 
-## Intended consumers
+The retained filename, `assistant-readiness-contract.md`, is historical. Read this document as the LLM integration boundary contract, not as approval for a generic assistant surface or deterministic automation.
 
-- Product and roadmap authors deciding what assistant capabilities are in or out of scope.
-- Engineers and reviewers checking whether proposed assistant features match current product truth.
-- Future planning work that needs a stable boundary reference separate from execution plans.
+## Terminology And Scope
 
-## Current assistant boundary
+For this document, the following terms are used consistently:
 
-SleepTracker is assistance-first and read-first today.
+- LLM-powered surface or LLM integration: any product surface where a large language model reads SleepTracker data or docs to generate summaries, recommendations, drafts, or mutation requests.
+- Deterministic automation: rule-based or explicitly programmed system behavior that does not rely on LLM generation, such as existing product CRUD handlers, auth flows, or scheduled internal logic.
+- First-party product flow: a shipped SleepTracker user flow where the user directly reads or mutates their own data through the product UI or API.
 
-The current product supports authenticated direct user CRUD flows plus authenticated read endpoints. Users can create, edit, and delete their own records through first-party product flows, but there is no assistant-controlled write surface, no draft object model, no provenance layer for assistant-authored changes, and no confirmation workflow that would make assistant writes safe or reviewable.
+This contract governs LLM integration boundaries only. It does not redefine what first-party product flows already support, and it does not treat existing deterministic automation or user-driven CRUD as LLM-approved behavior.
 
-As a result, the assistant boundary today is:
+## Allowed LLM Read Boundary
 
-- Analyze current first-party product data through approved read surfaces.
-- Summarize, interpret, and prioritize information already available in the product and its durable reference docs.
-- Do not create, edit, delete, submit, or synchronize user data.
-- Do not imply support for external tool invocation, conversational capture, calendar ingestion, or task-system integration.
+The approved LLM boundary is read-first and limited to shipped, first-party product reads plus durable companion docs that describe those reads.
 
-## Approved read surfaces today
+### Product reads within boundary
 
-Approved assistant reads must stay inside current product capabilities and current durable source documents.
-
-### Product read capabilities
-
-The safe read surface today is limited to authenticated first-party product reads and their existing derived outputs:
+An LLM-powered surface may analyze the following read-accessible product information when those reads are already available through authenticated first-party product flows:
 
 - Session and auth state needed to determine whether protected reads are available.
 - Sleep history reads, including range, day, and item detail views.
 - Exercise intensity reads used as context in existing product flows.
 - Trends reads for sleep bars and related chart or schedule interpretation.
-- Settings reads that affect current first-party behavior, such as timezone.
+- Settings reads that affect existing first-party behavior, such as timezone.
 - Personalization analysis reads that expose metrics, recommendation outputs, and friction backlog proposals.
 
-These reads are grounded in current shipped behavior described in the feature reference and current personalization docs. They do not extend to external systems, inferred conversations, or speculative integrations.
+These approved reads do not extend to external systems, inferred conversations, speculative capture channels, or undocumented integrations.
 
-### Durable source documents
+### Documentation reads within boundary
 
-The assistant may also rely on durable documentation that explains current behavior, metrics, and guardrails:
+An LLM-powered surface may also rely on durable companion docs that explain shipped behavior, metrics, and guardrails:
 
-- `docs/feature-reference.md` for current implemented product behavior and constraints.
-- `docs/personalization-metrics-shortlist.md` for the current metric shortlist, go or no-go gates, and rollout order.
-- `docs/personalization-agent-action-map.md` for current trigger, confidence, guardrail, and rollback policy around personalization proposals.
-- `docs/personalization-roadmap.md` as the companion roadmap reference for phased future direction, once present.
+- [feature-reference.md](./feature-reference.md) for shipped product behavior and constraints.
+- [personalization-metrics-shortlist.md](./personalization-metrics-shortlist.md) for the evidence-backed metric shortlist and gating thresholds.
+- [personalization-agent-action-map.md](./personalization-agent-action-map.md) for proposal guardrails, confidence thresholds, and rollback policy.
+- [personalization-roadmap.md](./personalization-roadmap.md) for phased direction without redefining shipped product truth.
+- [personalization-philosophy.md](./personalization-philosophy.md) for durable personalization beliefs, non-goals, and trust boundaries.
 
-## Explicitly out of scope today
+## Explicitly Out Of Scope Actions
 
-The following write behaviors are explicitly out of scope for the assistant today:
+The following actions are out of scope for any LLM-powered surface unless a later shipped design explicitly changes this contract and its companion docs:
 
 - Creating, editing, or deleting sleep sessions.
 - Creating or updating exercise intensity entries.
 - Creating notes or changing existing notes.
 - Posting settings changes on the user's behalf.
 - Triggering logout or any other mutating session action.
-- Writing friction telemetry as an assistant side effect.
+- Writing friction telemetry as an LLM side effect.
 - Auto-applying personalization proposals or promoting backlog items into product changes.
 - Generating product-visible drafts without a dedicated draft and provenance model.
-- Writing to external calendars, reminders, tasks, messaging systems, or any non-SleepTracker destination.
+- Writing to calendars, reminders, tasks, messaging systems, or any non-SleepTracker destination.
 
-The presence of user-driven CRUD endpoints does not make them assistant-approved. Current mutation support exists for direct product use, not for assistant execution.
+The existence of user-driven CRUD endpoints does not make those endpoints LLM-approved. Existing mutation support belongs to first-party product flows, not to LLM integration.
 
-## Prerequisites for future assistant write readiness
+## Prerequisites For LLM-Generated Drafts Or LLM-Mediated Writes
 
-No assistant draft generation or write path should be considered roadmap-ready until all of the following foundations exist and are credible in production:
+No LLM-generated draft flow or LLM-mediated write path should be considered roadmap-ready until all of the following foundations exist and are credible in production:
 
 ### 1. Friction telemetry strong enough to justify intervention
 
-Assistant write proposals should be informed by observed user friction, not by assumption. The system needs sustained friction telemetry that can identify repeated workflow pain, estimate likely benefit, and distinguish persistent problems from one-off noise.
+LLM-generated proposals should be informed by observed user friction, not by assumption. The product needs sustained friction telemetry that can identify repeated workflow pain, estimate likely benefit, and distinguish persistent problems from one-off noise.
 
 ### 2. Richer context capture
 
-Current product truth does not include a robust context layer for intent capture beyond existing first-party records and derived metrics. Before assistant-generated drafts or writes are considered, the product needs richer structured context about what the user is trying to do, why the suggestion is relevant, and which current signals support it.
+Shipped product truth does not yet provide a robust context layer for intent capture beyond existing first-party records and derived metrics. Before LLM-generated drafts or writes are considered, the product needs richer structured context about what the user is trying to do, why the suggestion is relevant, and which existing signals support it.
 
 ### 3. Drafts and provenance
 
-Any future assistant-generated change must first exist as a draft with clear provenance. The system needs a model that records what was proposed, which inputs informed it, when it was generated, and how it differs from current saved data.
+Any later-stage LLM-generated change must first exist as a draft with clear provenance. The product needs a model that records what was proposed, which inputs informed it, when it was generated, and how it differs from saved data.
 
 Without drafts and provenance, there is no durable review boundary and no safe authorship trail.
 
 ### 4. Explicit confirmation
 
-The user must have a clear confirmation step before any assistant-originated mutation is committed. Confirmation must make the proposed change, its basis, and its target object obvious enough to prevent silent or ambiguous writes.
+The user must have a clear confirmation step before any LLM-originated mutation is committed. Confirmation must make the proposed change, its basis, and its target object obvious enough to prevent silent or ambiguous writes.
 
 ### 5. Reversible flows
 
-Every assistant-originated change path needs a straightforward rollback or undo path. Reversibility is required both for user trust and for operational safety when suggestions are wrong, stale, or based on incomplete context.
+Every LLM-originated change path needs a straightforward rollback or undo path. Reversibility is required for user trust and for operational safety when suggestions are wrong, stale, or based on incomplete context.
 
 ### 6. Stronger outcome feedback
 
-The product needs outcome feedback that can show whether assistant suggestions or write flows actually help. This includes evidence about acceptance, abandonment, corrections after acceptance, and whether the proposed action improved the intended user outcome.
+The product needs outcome feedback that can show whether LLM suggestions or LLM-mediated write flows actually help. This includes evidence about acceptance, abandonment, corrections after acceptance, and whether the proposed action improved the intended user outcome.
 
-Without stronger feedback, the system cannot distinguish useful assistant behavior from plausible but ineffective automation.
+Without stronger feedback, the product cannot distinguish useful LLM behavior from plausible but ineffective automation.
 
-## Graduation path
+## Staged Graduation Path
 
-Future assistant capability should graduate in stages. Each stage depends on the guardrails from the earlier stage remaining intact.
+LLM integration should graduate in stages. Each stage depends on the guardrails from the earlier stage remaining intact.
 
 ### Stage 1. Read-only analysis
 
-The assistant reads current first-party product data and durable docs, then produces explanations, summaries, prioritization, and recommendations. No drafts are persisted. No writes are attempted.
+The LLM reads first-party product data and durable docs, then produces explanations, summaries, prioritization, and recommendations. No drafts are persisted. No writes are attempted.
 
 ### Stage 2. Draft with provenance
 
-The assistant may generate a non-applied draft artifact tied to explicit provenance, source inputs, and target records. The draft is reviewable, attributable, and separate from saved user data.
+The LLM may generate a non-applied draft artifact tied to explicit provenance, source inputs, and target records. The draft is reviewable, attributable, and separate from saved user data.
 
 ### Stage 3. User-confirmed writes
 
-The assistant may submit a mutation only after the user reviews and explicitly confirms a draft through a reversible flow with clear authorship and outcome tracking.
+The LLM may submit a mutation only after the user reviews and explicitly confirms a draft through a reversible flow with clear authorship and outcome tracking.
 
-### Stage 4. Broader assistant surfaces
+### Stage 4. Broader LLM-powered surfaces
 
-Only after draft safety, confirmation quality, rollback behavior, and outcome feedback are all proven should broader assistant surfaces be considered. Broader surfaces still need to remain constrained by first-party trust boundaries and current product evidence.
+Only after draft safety, confirmation quality, rollback behavior, and outcome feedback are all proven should broader LLM-powered surfaces be considered. Even then, they must remain constrained by first-party trust boundaries and shipped product evidence.
 
-## Guardrails and rollback expectations
+## Guardrails
 
 - Default to the most conservative stage when evidence is incomplete.
 - If provenance, confirmation, or reversibility becomes unclear, fall back to read-only analysis.
-- If an assistant proposal cannot explain its basis in current first-party data or durable docs, it should not progress.
+- If an LLM-generated proposal cannot explain its basis in first-party product data or durable docs, it must not progress.
 - If telemetry shows low trust, high correction rates, or weak outcome improvement, stop graduation and roll back the affected surface.
-- Any future assistant write path must be narrower than general user CRUD until its safeguards are proven over time.
-- Roadmap discussion does not count as approval to ship assistant writes.
+- Any later-stage LLM-mediated write path must stay narrower than general user CRUD until its safeguards are proven over time.
+- Roadmap discussion does not count as approval to ship LLM-mediated writes.
 
-## Source references
+## Companion Docs
 
-This contract should be read alongside the following durable references:
+Read this contract alongside the following durable references:
 
-- `docs/feature-reference.md` for current implemented features, authenticated reads, and user-driven mutations.
-- `docs/personalization-metrics-shortlist.md` for the current evidence-backed personalization metrics and gating thresholds.
-- `docs/personalization-agent-action-map.md` for guardrails, confidence thresholds, and rollback conditions around personalization proposals.
-- `docs/personalization-roadmap.md` for the companion phased roadmap covering short-term and longer-horizon direction without redefining current product truth.
+- [feature-reference.md](./feature-reference.md) for shipped features, authenticated reads, and user-driven mutations.
+- [personalization-metrics-shortlist.md](./personalization-metrics-shortlist.md) for evidence-backed personalization metrics and gating thresholds.
+- [personalization-agent-action-map.md](./personalization-agent-action-map.md) for proposal guardrails, confidence thresholds, and rollback conditions.
+- [personalization-roadmap.md](./personalization-roadmap.md) for the companion phased roadmap covering sequenced direction without redefining shipped product truth.
+- [personalization-philosophy.md](./personalization-philosophy.md) for the durable product beliefs and non-goals that constrain any LLM expansion.
 
-If any future proposal conflicts with current product truth in those documents, this contract should be interpreted conservatively and the proposal should remain read-only until the missing prerequisites are explicitly satisfied.
+If any later-stage proposal conflicts with shipped product truth in those documents, interpret this contract conservatively and keep the LLM surface read-only until the missing prerequisites are explicitly satisfied.

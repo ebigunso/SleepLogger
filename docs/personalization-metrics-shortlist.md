@@ -1,8 +1,22 @@
-# Personalization metrics shortlist (data-backed)
+# Personalization metrics shortlist
 
-This document captures a **focused, implement-first** set of personalization metrics, based on observed data in the live backend DB snapshot on 2026-02-17.
+- status: draft
+- last_updated: 2026-03-18
+- doc_role: durable shortlist for evidence-backed personalization metric families
+- canonical_for: prioritized metric families, go or no-go thresholds, defer guidance, and rollout order for personalization planning
+- not_canonical_for: shipped feature inventory, roadmap sequencing, or undated proof of current product behavior
 
-## Snapshot basis
+## Purpose
+
+This document preserves a focused, implement-first shortlist of personalization metric families that are strong enough to prioritize.
+
+It uses one dated backend snapshot as planning evidence, but the shortlist guidance below is intended to remain durable until newer evidence justifies changing the priorities or thresholds.
+
+Use [feature-reference.md](./feature-reference.md) for shipped product truth, [personalization-roadmap.md](./personalization-roadmap.md) for sequencing, [personalization-philosophy.md](./personalization-philosophy.md) for durable product beliefs, [personalization-agent-action-map.md](./personalization-agent-action-map.md) for guarded deterministic proposal logic, and [assistant-readiness-contract.md](./assistant-readiness-contract.md) for LLM integration boundaries.
+
+## Dated snapshot basis
+
+The following observations are a time-scoped planning input, not a floating statement of current product truth.
 
 Observed in `/data/sleep.db` (copied read-only for analysis):
 
@@ -19,6 +33,10 @@ Observed in `/data/sleep.db` (copied read-only for analysis):
 
 ---
 
+## Durable shortlist guidance
+
+The metric families below are the current prioritized shortlist. The tables preserve the thresholds and rollout order chosen from the dated snapshot basis above unless later evidence justifies a revision.
+
 ## Implement-first 6 metrics (with go/no-go)
 
 | Metric | Why this is high value now | Personalization enabled | Go threshold | No-go / defer condition |
@@ -28,7 +46,7 @@ Observed in `/data/sleep.db` (copied read-only for analysis):
 | Social jetlag indicator (weekend-mid - weekday-mid) | Effect size is already meaningful (+45 min) | Trigger schedule regularity nudges and timeline callouts | Absolute delta >= 30 min for 2 consecutive windows | Delta unstable across windows or weekend sample too small |
 | Schedule variability score (std dev or robust MAD of bed/wake) | High variability exists today and is a direct personalization target | Prioritize consistency-focused insights over duration-only messaging | Variability >= 60 min and persists across 2 windows | Window too small (< 21 days) or logging gaps dominate |
 | Quality-aligned factor ranking (quality vs timing/duration features) | Quality has usable spread (1-5 with concentration at 4/5, but not degenerate) | Prioritize changes likely to improve your own high-quality nights | >= 40 sessions with non-missing quality and at least 3 distinct quality levels | Quality scoring behavior changes abruptly (scale drift) |
-| Friction cost metrics (time-in-form, error_kind, immediate edit rate, partial follow-up failure) | Highest expected ROI metric family for autonomous roadmap decisions; currently missing and should be added first | Rank UX improvements by expected minutes saved/week | >= 30 submit flows captured and at least one recurrent friction cluster | Too few events, or events cannot be tied to save outcomes |
+| Friction cost metrics (time-in-form, error_kind, immediate edit rate, partial follow-up failure) | Highest expected ROI metric family for evidence-backed roadmap decisions; currently missing and should be added first | Rank UX improvements by expected minutes saved/week | >= 30 submit flows captured and at least one recurrent friction cluster | Too few events, or events cannot be tied to save outcomes |
 
 ---
 
