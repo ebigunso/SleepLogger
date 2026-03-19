@@ -329,3 +329,33 @@ Prevention:
 
 Evidence:
 - User correction on 2026-03-16 stating that lessons should be generalized as much as possible for future steering value, but not prematurely expanded beyond confirmed intent.
+
+## 2026-03-20 — Durable docs must emphasize the main point before listing support  [tags: docs, communication, prioritization, structure]
+
+Context:
+- Plan: `docs/coding-agent/plans/completed/durable-personalization-doc-architecture-refresh-plan.md`
+- Task/Wave: Post-refresh review of the new durable personalization doc set
+- Roles involved: Orchestrator, User
+
+Deviation:
+- I structured the revised docs more cleanly than before, but still wrote several sections with a flat, list-heavy cadence that gave supporting details nearly the same emphasis as the primary message.
+- That made the documents informative without making the hierarchy of importance obvious enough to a skimming reader.
+
+Root cause:
+- I optimized for coverage and completeness instead of first deciding what the single most important idea of each document should be.
+- I let section structure mirror topic inventory rather than message priority.
+
+Fix applied:
+- Reworked the doc set so each file leads with its most important governing idea and uses subsequent sections to subordinate supporting material.
+- Tightened the structure so philosophy, milestones, boundaries, and companion-detail docs each emphasize their core purpose before listing secondary points.
+
+Prevention:
+- Primary promotion target: global-skill
+- Candidate prevention rule (optional):
+  - audience: orchestrator
+  - proposed rule: For durable docs, identify the one or two ideas a skimming reader must retain first, then structure headings and lists so supporting details cannot visually compete with those primary ideas.
+- Optional guardrail:
+  - Before finalizing a durable doc, ask: what should be remembered first, what is second-order support, and which lists should be collapsed, subordinated, or moved to companion docs instead of being given equal weight?
+
+Evidence:
+- User correction on 2026-03-20 that the documents still showed a habit of listing everything with equal tone instead of emphasizing what matters most.
