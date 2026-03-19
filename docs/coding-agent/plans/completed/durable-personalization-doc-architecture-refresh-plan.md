@@ -187,4 +187,4 @@
 - 2026-03-16: Treat document-role architecture as a prerequisite to rewriting content so philosophy, roadmap sequencing, and LLM integration boundaries can evolve independently.
 - 2026-03-16: Treat explicit LLM terminology and freshness metadata as durable defaults for future product-doc work rather than one-off fixes to these files.
 - 2026-03-16: Keep adjacent-doc polish intentionally narrow; leave `docs/api_examples.md`, `README.md`, and other non-overlapping docs alone unless link fallout requires a minimal fix.
-- 2026-03-18: Prefer a canonical filename that matches the LLM-specific document role; preserve the old path only as a historical compatibility stub when needed for older references.
+- 2026-03-18: Prefer a canonical filename that matches the LLM-specific document role; temporary compatibility stubs may be acceptable during migration, but this was later superseded by fully retiring the old path on 2026-03-20.
