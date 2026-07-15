@@ -34,3 +34,6 @@ sleep-ui/test-results
 
 # Playwright artifacts
 .playwright-cli/
+
+# Runtime artifacts (local databases, scratch files)
+tmp/
