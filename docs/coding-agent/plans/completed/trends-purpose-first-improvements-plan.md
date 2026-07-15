@@ -36,7 +36,7 @@ Improve the Trends experience so each visualization answers a clear user questio
 - **type:** design
 - **owns:**
   - `docs/feature-reference.md`
-  - `docs/personalization-agent-action-map.md`
+  - `docs/personalization-proposal-policy.md`
 - **depends_on:** []
 - **acceptance:**
   - Map each metric to a primary user question and action intent.

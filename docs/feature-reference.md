@@ -2,6 +2,8 @@
 
 This document inventories implemented capabilities by domain, with active user-visible features separated from legacy and non-UI-surfaced items.
 
+It is the canonical shipped-truth reference for current behavior. Where a section includes reference-spec detail for an existing surface, treat that detail as current implementation guidance, not broader product strategy or roadmap direction.
+
 ## Active domains (in-use UI capabilities)
 
 ### 1) Auth / session
@@ -91,7 +93,9 @@ This document inventories implemented capabilities by domain, with active user-v
 - `openapi.yaml` (`/api/trends/sleep-bars`)
 - `sleep-ui/src/routes/trends/+page.svelte`
 
-#### Trends metric purpose + comparison/interpretation spec (Task_1)
+#### Trends metric purpose + comparison/interpretation reference
+
+This subsection documents the current interpretation rules for the shipped Trends surface. It does not expand roadmap or product-strategy intent beyond the existing UI and payload contracts.
 
 This spec defines purpose-first interpretation rules for existing Trends chart metrics without changing current payload contracts or controls.
 
@@ -215,11 +219,15 @@ This spec defines purpose-first interpretation rules for existing Trends chart m
 - Auto-promotion requires at least `medium` confidence.
 - Backlog proposals include rollback conditions and are downgraded when persistence or confidence weakens.
 
+**Companion doc boundary**
+- This section is the canonical shipped-truth reference for implemented personalization endpoints and behavior.
+- Use [personalization-metrics-shortlist.md](./personalization-metrics-shortlist.md) for durable metric prioritization, [personalization-proposal-policy.md](./personalization-proposal-policy.md) for deterministic proposal policy, [personalization-roadmap.md](./personalization-roadmap.md) for future sequencing, [personalization-philosophy.md](./personalization-philosophy.md) for durable product beliefs, and [llm-integration-readiness-contract.md](./llm-integration-readiness-contract.md) for future LLM integration boundaries.
+
 **Source evidence**
 - `sleep-api/src/app.rs` (personalization route wiring)
 - `sleep-api/src/trends.rs` (personalization metrics and recommendations)
 - `sleep-api/src/handlers.rs` (friction telemetry ingestion and backlog policy fields)
-- `docs/personalization-agent-action-map.md` (trigger/guardrail policy)
+- `docs/personalization-proposal-policy.md` (trigger/guardrail policy)
 
 ---
 

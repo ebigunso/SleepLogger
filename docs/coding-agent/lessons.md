@@ -183,3 +183,210 @@ Prevention:
   - Run a targeted search for `C:/Users`, `/c/Users`, `%USERPROFILE%`, `%APPDATA%`, `AppData`, and similar local-path markers before pushing documentation-heavy changes.
 
 Evidence:
+
+## 2026-03-16 — Durable product docs used "assistant" ambiguously for LLM-specific behavior  [tags: docs, communication, terminology, llm]
+
+Context:
+- Plan: Follow-up revision to durable personalization roadmap docs
+- Task/Wave: Pre-plan refresh / document architecture correction
+- Roles involved: Orchestrator, User
+
+Deviation:
+- I wrote durable product docs that used "assistant" ambiguously enough to blur whether the docs were talking about LLM-powered integrations or more mechanical forms of automation.
+
+Root cause:
+- I used broad shorthand for a capability class that needed to be distinguished from adjacent concepts such as deterministic automation and repo-internal agent workflow.
+- I did not freeze a terminology policy before drafting the durable docs.
+
+Fix applied:
+- Paused the doc revision flow and re-scoped the work around explicit capability-class terminology.
+- Added a plan requirement to standardize terminology for model-driven and automation-adjacent concepts before revising the docs.
+
+Prevention:
+- Primary promotion target: global-skill
+- Candidate prevention rule (optional):
+  - audience: orchestrator
+  - proposed rule: Before drafting durable product docs about behavior classes or system roles, define the capability-class terminology explicitly and avoid ambiguous umbrella terms unless they are defined near the top.
+- Optional guardrail:
+  - For durable product docs, distinguish among the nearby capability classes in scope before drafting content, and make the intended boundary explicit.
+
+Evidence:
+- User correction on 2026-03-16 requiring explicit LLM terminology because "assistant" could be interpreted as mechanical rather than LLM-driven.
+
+## 2026-03-20 — Fix misleading durable doc names instead of apologizing for them  [tags: docs, naming, communication, durability]
+
+Context:
+- Plan: Follow-up cleanup of durable personalization docs
+- Task/Wave: Post-architecture polish / naming correction
+- Roles involved: Orchestrator, User
+
+Deviation:
+- I left a durable policy document under a misleading filename and compensated with explanatory prose about why the name should not be taken literally.
+- That kept the underlying naming mismatch in place instead of remedying it.
+
+Root cause:
+- I optimized for minimal disruption and link preservation instead of treating the misleading filename itself as the defect.
+- I accepted disclaimer text as sufficient even though the file name continued to advertise the wrong conceptual role.
+
+Fix applied:
+- Renamed the document to match its actual role as proposal policy.
+- Updated live and historical references to the canonical path and removed the defensive filename disclaimer.
+
+Prevention:
+- Primary promotion target: global-skill
+- Candidate prevention rule (optional):
+  - audience: orchestrator
+  - proposed rule: When a durable doc needs a sentence explaining why its filename or title should not be taken literally, treat that as a signal to fix the name or structure instead of preserving the mismatch with disclaimer prose.
+- Optional guardrail:
+  - For durable docs, compare title, filename, metadata role, and opening paragraph before finalizing; if they disagree, resolve the naming mismatch rather than documenting around it.
+
+Evidence:
+- User correction on 2026-03-20: "You shouldn't just dance around potential issues like this, but rather work to remedy them."
+
+## 2026-03-20 — Durable docs need narrative weighting, not flat peer lists  [tags: docs, communication, structure, emphasis]
+
+Context:
+- Plan: Follow-up refactor of durable personalization docs
+- Task/Wave: Pre-plan structural narrative audit
+- Roles involved: Orchestrator, User
+
+Deviation:
+- I wrote durable docs whose sections and lists gave too many ideas equal visual and rhetorical weight.
+- Important framing, governing rules, and milestone priorities were present, but they were not foregrounded strongly enough for a reader to see the main story quickly.
+
+Root cause:
+- I optimized for completeness and coverage instead of deciding which few ideas were foundational and which belonged as support material.
+- I allowed long peer lists, repeated caveats, and early support sections to flatten the emphasis structure of the documents.
+
+Fix applied:
+- Paused to audit the docs specifically for narrative weighting and tiering problems before making more wording tweaks.
+- Re-scoped the next doc pass around structural emphasis: primary claim first, grouped tiers, and supporting detail later.
+
+Prevention:
+- Primary promotion target: global-skill
+- Candidate prevention rule (optional):
+  - audience: orchestrator
+  - proposed rule: For durable strategy or policy docs, identify the one governing claim and the two or three highest-priority ideas before drafting, then structure the document so those appear before peer lists, support tables, or companion-routing detail.
+- Optional guardrail:
+  - Before finalizing a durable doc, check whether the first screen shows the main story and whether any 5-plus-item section should instead be grouped into foundational, supporting, or later-stage tiers.
+
+Evidence:
+- User correction on 2026-03-20: the docs showed a tendency to give everything equal tone instead of emphasizing what matters most.
+
+
+## 2026-03-16 — Durable product docs must separate philosophy from milestone and boundary detail  [tags: docs, communication, roadmap, abstraction]
+
+Context:
+- Plan: Follow-up revision to durable personalization roadmap docs
+- Task/Wave: Pre-plan refresh / document architecture correction
+- Roles involved: Orchestrator, User
+
+Deviation:
+- I mixed product aspirations, design philosophy, milestone sequencing, and implementation-adjacent boundary detail too closely in the durable roadmap set.
+
+Root cause:
+- I optimized for a complete immediate write-up instead of assigning clear roles to philosophy, roadmap, and boundary documents first.
+- I allowed large abstraction jumps inside the same documents without a strong document-role architecture.
+
+Fix applied:
+- Re-scoped the work around a document-architecture refresh rather than a wording-only revision.
+- Added a plan requirement to define separate durable document roles before rewriting the roadmap set.
+
+Prevention:
+- Primary promotion target: global-skill
+- Candidate prevention rule (optional):
+  - audience: orchestrator
+  - proposed rule: Before drafting durable product documentation, define which document owns philosophy, which owns milestone sequencing, and which owns capability boundaries so mixed abstraction levels do not collapse into one memo.
+- Optional guardrail:
+  - If aspirations, milestones, and boundary rules all need to be expressed, decide the document split before drafting the prose.
+
+Evidence:
+- User correction on 2026-03-16 requiring the roadmap to convey aspirations and milestones before details, and suggesting a split if abstraction levels are too far apart.
+
+## 2026-03-16 — Durable product docs need explicit freshness semantics for time-relative language  [tags: docs, communication, durability, freshness]
+
+Context:
+- Plan: Follow-up revision to durable personalization roadmap docs
+- Task/Wave: Pre-plan refresh / document architecture correction
+- Roles involved: Orchestrator, User
+
+Deviation:
+- I used time-relative language like "today" and "current" in durable product docs without a clear freshness contract or update context.
+
+Root cause:
+- I treated time-relative language as acceptable shorthand instead of requiring metadata or dated snapshot framing.
+- I did not define how readers should distinguish durable principles from dated state observations.
+
+Fix applied:
+- Added a plan requirement to define metadata fields and freshness semantics before revising the docs.
+- Shifted the revision approach toward explicit last-updated context and dated snapshot language where needed.
+
+Prevention:
+- Primary promotion target: global-skill
+- Candidate prevention rule (optional):
+  - audience: orchestrator
+  - proposed rule: Durable product docs that use time-relative language must carry explicit freshness metadata or dated snapshot framing, and unqualified uses of terms like "today" or "current" should be removed or anchored.
+- Optional guardrail:
+  - Before finalizing durable docs, run a terminology sweep for time-relative words and confirm each one is either durable by role or explicitly date-anchored.
+
+Evidence:
+- User correction on 2026-03-16 requiring a durable way to distinguish outdated documents from up-to-date ones and to anchor uses of "today" in context.
+
+## 2026-03-16 — Keep lesson incidents concrete and generalize the prevention rule  [tags: lessons, communication, scope, durability]
+
+Context:
+- Plan: Follow-up revision to durable personalization roadmap docs
+- Task/Wave: Lesson refinement after document-architecture correction
+- Roles involved: Orchestrator, User
+
+Deviation:
+- I generalized the entire lesson instead of keeping the triggering incident concrete and concentrating the generalization work in the prevention section.
+
+Root cause:
+- I treated the lesson title and incident record as the main place to maximize reuse, rather than treating the prevention rule as the main place to generalize future guidance.
+- I did not separate "what happened" from "what rule should change going forward" clearly enough.
+
+Fix applied:
+- Reverted the incident lesson back to the concrete LLM-terminology problem that triggered it.
+- Updated the meta-lesson so it makes the lesson-writing standard explicit for future captures.
+
+Prevention:
+- Primary promotion target: global-skill
+- Candidate prevention rule (optional):
+  - audience: orchestrator
+  - proposed rule: When capturing a lesson, keep the incident record concrete and specific to what happened, then generalize the prevention rule to the highest-value confirmed scope that still directly addresses the issue; if a broader prevention scope is plausible but unconfirmed, ask instead of assuming.
+- Optional guardrail:
+  - Before finalizing a lesson, ask three questions: "Is the incident record concrete enough to preserve what happened?" "Can the prevention rule be generalized further without losing the original issue?" and "Would broadening the prevention rule further require assumptions about user intent or adjacent domains?"
+
+Evidence:
+- User correction on 2026-03-16 stating that lessons should be generalized as much as possible for future steering value, but not prematurely expanded beyond confirmed intent.
+
+## 2026-03-20 — Durable docs must emphasize the main point before listing support  [tags: docs, communication, prioritization, structure]
+
+Context:
+- Plan: `docs/coding-agent/plans/completed/durable-personalization-doc-architecture-refresh-plan.md`
+- Task/Wave: Post-refresh review of the new durable personalization doc set
+- Roles involved: Orchestrator, User
+
+Deviation:
+- I structured the revised docs more cleanly than before, but still wrote several sections with a flat, list-heavy cadence that gave supporting details nearly the same emphasis as the primary message.
+- That made the documents informative without making the hierarchy of importance obvious enough to a skimming reader.
+
+Root cause:
+- I optimized for coverage and completeness instead of first deciding what the single most important idea of each document should be.
+- I let section structure mirror topic inventory rather than message priority.
+
+Fix applied:
+- Reworked the doc set so each file leads with its most important governing idea and uses subsequent sections to subordinate supporting material.
+- Tightened the structure so philosophy, milestones, boundaries, and companion-detail docs each emphasize their core purpose before listing secondary points.
+
+Prevention:
+- Primary promotion target: global-skill
+- Candidate prevention rule (optional):
+  - audience: orchestrator
+  - proposed rule: For durable docs, identify the one or two ideas a skimming reader must retain first, then structure headings and lists so supporting details cannot visually compete with those primary ideas.
+- Optional guardrail:
+  - Before finalizing a durable doc, ask: what should be remembered first, what is second-order support, and which lists should be collapsed, subordinated, or moved to companion docs instead of being given equal weight?
+
+Evidence:
+- User correction on 2026-03-20 that the documents still showed a habit of listing everything with equal tone instead of emphasizing what matters most.

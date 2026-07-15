@@ -46,7 +46,7 @@ Remove rollout-flag complexity for personalization endpoints in this single-user
 - **owns:**
   - `openapi.yaml`
   - `README.md`
-  - `docs/personalization-agent-action-map.md`
+  - `docs/personalization-proposal-policy.md`
   - `docs/feature-reference.md`
 - **depends_on:** [Task_1]
 - **acceptance:**
